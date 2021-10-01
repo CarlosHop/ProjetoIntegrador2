@@ -20,6 +20,8 @@ public class Main {
         Methods met = new Methods();
         
         met.boasVindas();
+        
+        System.out.println("Teste!");
     }
 
 }
