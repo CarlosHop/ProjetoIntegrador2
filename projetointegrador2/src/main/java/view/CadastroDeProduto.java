@@ -26,6 +26,8 @@ public class CadastroDeProduto extends javax.swing.JFrame {
         txtPreco = new javax.swing.JTextField();
         btnCadastraProd = new javax.swing.JButton();
         btnLimparProd = new javax.swing.JButton();
+        btnConsulta = new javax.swing.JButton();
+        btnFechar = new javax.swing.JButton();
 
         jLabel5.setFont(new java.awt.Font("Arial Unicode MS", 1, 18)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -50,6 +52,11 @@ public class CadastroDeProduto extends javax.swing.JFrame {
         jLabel4.setText("Quantidade");
 
         txtQuantidade.setFont(new java.awt.Font("Arial Unicode MS", 0, 14)); // NOI18N
+        txtQuantidade.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtQuantidadeActionPerformed(evt);
+            }
+        });
 
         jLabel6.setFont(new java.awt.Font("Arial Unicode MS", 1, 18)); // NOI18N
         jLabel6.setText("Preço Unitário");
@@ -71,6 +78,26 @@ public class CadastroDeProduto extends javax.swing.JFrame {
         btnLimparProd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLimparProdActionPerformed(evt);
+            }
+        });
+
+        btnConsulta.setFont(new java.awt.Font("Arial Unicode MS", 1, 18)); // NOI18N
+        btnConsulta.setText("Consultar Produtos");
+        btnConsulta.setMaximumSize(new java.awt.Dimension(118, 41));
+        btnConsulta.setMinimumSize(new java.awt.Dimension(118, 41));
+        btnConsulta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConsultaActionPerformed(evt);
+            }
+        });
+
+        btnFechar.setFont(new java.awt.Font("Arial Unicode MS", 1, 18)); // NOI18N
+        btnFechar.setText("Fechar");
+        btnFechar.setMaximumSize(new java.awt.Dimension(118, 41));
+        btnFechar.setMinimumSize(new java.awt.Dimension(118, 41));
+        btnFechar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFecharActionPerformed(evt);
             }
         });
 
@@ -96,9 +123,12 @@ public class CadastroDeProduto extends javax.swing.JFrame {
                                 .addComponent(txtPreco, javax.swing.GroupLayout.DEFAULT_SIZE, 720, Short.MAX_VALUE)))
                         .addContainerGap(59, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnFechar, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnLimparProd, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(btnCadastraProd, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(48, 48, 48))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -129,8 +159,10 @@ public class CadastroDeProduto extends javax.swing.JFrame {
                     .addComponent(txtQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnCadastraProd, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnLimparProd, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnFechar, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnLimparProd, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCadastraProd, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(21, 21, 21))
         );
 
@@ -150,6 +182,19 @@ public class CadastroDeProduto extends javax.swing.JFrame {
         txtQuantidade.setText("");
     }//GEN-LAST:event_btnLimparProdActionPerformed
 
+    private void btnConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultaActionPerformed
+        ConsultaProdutos consult = new ConsultaProdutos();
+        consult.setVisible(true);
+    }//GEN-LAST:event_btnConsultaActionPerformed
+
+    private void txtQuantidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtQuantidadeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtQuantidadeActionPerformed
+
+    private void btnFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFecharActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btnFecharActionPerformed
+
    
     public static void main(String args[]) {
 
@@ -162,6 +207,8 @@ public class CadastroDeProduto extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCadastraProd;
+    private javax.swing.JButton btnConsulta;
+    private javax.swing.JButton btnFechar;
     private javax.swing.JButton btnLimparProd;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

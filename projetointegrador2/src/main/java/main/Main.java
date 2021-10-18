@@ -11,11 +11,15 @@
  */
 package main;
 
+import view.BoasVindas;
+
 public class Main {
 
     public static void main(String[] args) {
         
-
+           BoasVindas vindas = new BoasVindas();
+           
+           vindas.BoasVindas();
     }
 
 }
