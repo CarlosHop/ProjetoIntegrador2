@@ -1,6 +1,8 @@
 package view;
 
+import java.text.ParseException;
 import javax.swing.JOptionPane;
+import javax.swing.text.MaskFormatter;
 
 public class CadastroUsuario extends javax.swing.JFrame {
 
@@ -9,6 +11,7 @@ public class CadastroUsuario extends javax.swing.JFrame {
      */
     public CadastroUsuario() {
         initComponents();
+        formatarCampo();
     }
 
     /**
@@ -26,8 +29,8 @@ public class CadastroUsuario extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         txtNome = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        txtCpf1 = new javax.swing.JTextField();
         btnConfirmar = new javax.swing.JButton();
+        ftxtCpf = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -36,7 +39,6 @@ public class CadastroUsuario extends javax.swing.JFrame {
         jLabel1.setText("Cadastro de Cliente");
 
         txtEndereco.setFont(new java.awt.Font("Arial Unicode MS", 1, 18)); // NOI18N
-        txtEndereco.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtEndereco.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtEnderecoActionPerformed(evt);
@@ -50,7 +52,6 @@ public class CadastroUsuario extends javax.swing.JFrame {
         jLabel3.setText("Endereço");
 
         txtNome.setFont(new java.awt.Font("Arial Unicode MS", 1, 18)); // NOI18N
-        txtNome.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtNome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNomeActionPerformed(evt);
@@ -60,19 +61,18 @@ public class CadastroUsuario extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Arial Unicode MS", 1, 18)); // NOI18N
         jLabel4.setText("CPF");
 
-        txtCpf1.setFont(new java.awt.Font("Arial Unicode MS", 1, 18)); // NOI18N
-        txtCpf1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtCpf1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCpf1ActionPerformed(evt);
-            }
-        });
-
         btnConfirmar.setFont(new java.awt.Font("Arial Unicode MS", 1, 14)); // NOI18N
         btnConfirmar.setText("Confirmar");
         btnConfirmar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnConfirmarActionPerformed(evt);
+            }
+        });
+
+        ftxtCpf.setFont(new java.awt.Font("Arial Unicode MS", 1, 18)); // NOI18N
+        ftxtCpf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ftxtCpfActionPerformed(evt);
             }
         });
 
@@ -94,8 +94,8 @@ public class CadastroUsuario extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 710, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 710, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtCpf1, javax.swing.GroupLayout.PREFERRED_SIZE, 710, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnConfirmar))
+                            .addComponent(btnConfirmar)
+                            .addComponent(ftxtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 708, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(26, 26, 26))))
         );
         layout.setVerticalGroup(
@@ -109,18 +109,19 @@ public class CadastroUsuario extends javax.swing.JFrame {
                 .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel4)
-                .addGap(18, 18, 18)
-                .addComponent(txtCpf1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(ftxtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
                 .addComponent(btnConfirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtEnderecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEnderecoActionPerformed
@@ -131,17 +132,24 @@ public class CadastroUsuario extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNomeActionPerformed
 
-    private void txtCpf1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCpf1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCpf1ActionPerformed
-
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
-        JOptionPane.showMessageDialog(null, "Cliente cadastrado com sucesso!", "Confirmação de Cadastro", JOptionPane.WARNING_MESSAGE);
+        
+        JOptionPane.showMessageDialog(null, "Cliente " + txtNome.getText() + " cadastrado(a) com sucesso!", "Confirmação de Cadastro", JOptionPane.WARNING_MESSAGE);
     }//GEN-LAST:event_btnConfirmarActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    private void ftxtCpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ftxtCpfActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ftxtCpfActionPerformed
+
+    private void formatarCampo() {
+        try {
+            MaskFormatter mask = new MaskFormatter("###.###.###-##");
+            mask.install(ftxtCpf);
+        } catch (ParseException ex) {
+            JOptionPane.showMessageDialog(null, "Insira um CPF válido!", "ERRO", JOptionPane.ERROR);
+        }
+    }
+
     public static void main(String args[]) {
 
         try {
@@ -172,11 +180,11 @@ public class CadastroUsuario extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConfirmar;
+    private javax.swing.JFormattedTextField ftxtCpf;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JTextField txtCpf1;
     private javax.swing.JTextField txtEndereco;
     private javax.swing.JTextField txtNome;
     // End of variables declaration//GEN-END:variables
