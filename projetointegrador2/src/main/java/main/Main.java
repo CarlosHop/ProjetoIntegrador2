@@ -11,17 +11,11 @@
  */
 package main;
 
-import methods.Methods;
-
 public class Main {
 
     public static void main(String[] args) {
         
-        Methods met = new Methods();
-        
-        met.boasVindas();
-        
-        System.out.println("Teste!");
+
     }
 
 }
