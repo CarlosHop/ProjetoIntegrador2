@@ -368,7 +368,7 @@ public class Tela_Vendas extends javax.swing.JFrame {
             System.out.println(data);
             System.out.println(nome);
             System.out.println(cpf);
-            
+            //imprime no navegador para mostrar o conteúdo das variaveis
         }
         
     }//GEN-LAST:event_btnSalvarActionPerformed
