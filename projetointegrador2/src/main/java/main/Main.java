@@ -17,8 +17,8 @@ public class Main {
 
     public static void main(String[] args) {
         
-           BoasVindas vindas = new BoasVindas();
+          BoasVindas vindas = new BoasVindas();
            
-           vindas.BoasVindas();
+        
     }
 }
