@@ -437,7 +437,7 @@ public class Tela_Vendas extends javax.swing.JFrame {
     }//GEN-LAST:event_txtValor_EntrActionPerformed
 
     private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarActionPerformed
-        
+        //model da tabela
         DefaultTableModel modelTabela = (DefaultTableModel) jTable1.getModel();
         
         modelTabela.addRow(new Object[]{
