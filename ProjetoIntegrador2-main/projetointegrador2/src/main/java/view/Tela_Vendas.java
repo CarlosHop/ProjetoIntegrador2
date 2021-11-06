@@ -362,7 +362,8 @@ public class Tela_Vendas extends javax.swing.JFrame {
         String codProd = txtCod_Prod.getText();
         String produto = txtProd.getText();
         String qtd = txtQtd.getText();
-            
+        
+            //teste para a verificação
             if(!"".equals(codProd) && !"".equals(produto) && !"".equals(qtd)){
                 int retorno = JOptionPane.showConfirmDialog(null, "Deseja mesmo salvar?", "Confirmação de salvamento", 
                         JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
