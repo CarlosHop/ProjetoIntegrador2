@@ -11,7 +11,7 @@ private String endereco;
 public Funcionario(){}
 
 /*==============================================================================*/
-                                   /*Get's*/
+                                   /*Getters*/
     public String getNome() {
         return Nome;
     }
@@ -28,7 +28,7 @@ public Funcionario(){}
         return endereco;
     }
 /*==============================================================================*/
-                                  /*Set's*/
+                                  /*Setters*/
     public void setNome(String Nome) {
         this.Nome = Nome;
     }
