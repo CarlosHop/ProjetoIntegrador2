@@ -12,5 +12,11 @@ return RazaoSocial;
 public int getCNPJ(){
 return CNPJ;
 }
-  
+
+public void setRazaoSocial(){
+    this.RazaoSocial=RazaoSocial;
+}
+public void setCNPJ(){
+    this.CNPJ=CNPJ;
+} 
 }
