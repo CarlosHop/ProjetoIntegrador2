@@ -7,34 +7,35 @@ public class Produto {
     private double precoProduto;
     private int quantProduto;
 
+    
+    public Produto(){}
+    
+/*============================================================================*/
+/*                              Métodos Get's                                 */
     public String getMarcaProduto() {
         return marcaProduto;
     }
-
-    public void setMarcaProduto(String marcaProduto) {
-        this.marcaProduto = marcaProduto;
-    }
-    
     public String getNomeProduto() {
         return nomeProduto;
     }
-
-    public void setNomeProduto(String nomeProduto) {
-        this.nomeProduto = nomeProduto;
-    }
-
     public double getPrecoProduto() {
         return precoProduto;
     }
-
-    public void setPrecoProduto(double precoProduto) {
-        this.precoProduto = precoProduto;
-    }
-
     public int getQuantProduto() {
         return quantProduto;
     }
-
+    
+/*============================================================================*/
+/*                              Métodos Set's                                 */ 
+    public void setMarcaProduto(String marcaProduto) {
+        this.marcaProduto = marcaProduto;
+    }
+    public void setNomeProduto(String nomeProduto) {
+        this.nomeProduto = nomeProduto;
+    }
+    public void setPrecoProduto(double precoProduto) {
+        this.precoProduto = precoProduto;
+    }
     public void setQuantProduto(int quantProduto) {
         this.quantProduto = quantProduto;
     }
