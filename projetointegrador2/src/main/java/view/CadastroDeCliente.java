@@ -1,6 +1,8 @@
 package view;
 
 import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.text.MaskFormatter;
 
@@ -30,14 +32,14 @@ public class CadastroDeCliente extends javax.swing.JFrame {
         txtEmail = new javax.swing.JTextField();
         lblContato = new javax.swing.JLabel();
         btnConfirmar = new javax.swing.JButton();
-        ftxtContato = new javax.swing.JFormattedTextField();
+        txtContato = new javax.swing.JFormattedTextField();
         btnFechar = new javax.swing.JButton();
         lblCpf1 = new javax.swing.JLabel();
         ftxtCpf1 = new javax.swing.JFormattedTextField();
         lblEndereco1 = new javax.swing.JLabel();
         txtNome1 = new javax.swing.JTextField();
         lblEndereco2 = new javax.swing.JLabel();
-        ftxtContato1 = new javax.swing.JFormattedTextField();
+        txtCep = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -77,14 +79,14 @@ public class CadastroDeCliente extends javax.swing.JFrame {
         });
 
         try {
-            ftxtContato.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)#####-####")));
+            txtContato.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)#####-####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        ftxtContato.setFont(new java.awt.Font("Arial Unicode MS", 1, 18)); // NOI18N
-        ftxtContato.addActionListener(new java.awt.event.ActionListener() {
+        txtContato.setFont(new java.awt.Font("Arial Unicode MS", 1, 18)); // NOI18N
+        txtContato.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ftxtContatoActionPerformed(evt);
+                txtContatoActionPerformed(evt);
             }
         });
 
@@ -99,6 +101,11 @@ public class CadastroDeCliente extends javax.swing.JFrame {
         lblCpf1.setFont(new java.awt.Font("Arial Unicode MS", 1, 18)); // NOI18N
         lblCpf1.setText("CPF");
 
+        try {
+            ftxtCpf1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
         ftxtCpf1.setFont(new java.awt.Font("Arial Unicode MS", 1, 18)); // NOI18N
         ftxtCpf1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -120,14 +127,14 @@ public class CadastroDeCliente extends javax.swing.JFrame {
         lblEndereco2.setText("CEP");
 
         try {
-            ftxtContato1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####-###")));
+            txtCep.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####-###")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        ftxtContato1.setFont(new java.awt.Font("Arial Unicode MS", 1, 18)); // NOI18N
-        ftxtContato1.addActionListener(new java.awt.event.ActionListener() {
+        txtCep.setFont(new java.awt.Font("Arial Unicode MS", 1, 18)); // NOI18N
+        txtCep.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ftxtContato1ActionPerformed(evt);
+                txtCepActionPerformed(evt);
             }
         });
 
@@ -154,11 +161,11 @@ public class CadastroDeCliente extends javax.swing.JFrame {
                                         .addComponent(lblCpf1)
                                         .addComponent(ftxtCpf1, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(lblEndereco2)
-                                        .addComponent(ftxtContato1, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(txtCep, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGap(19, 19, 19)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addComponent(lblContato)
-                                        .addComponent(ftxtContato, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(txtContato, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(lblEndereco1)
                                         .addGroup(layout.createSequentialGroup()
                                             .addComponent(txtEmail)
@@ -186,7 +193,7 @@ public class CadastroDeCliente extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblContato)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ftxtContato, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtContato, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
@@ -194,7 +201,7 @@ public class CadastroDeCliente extends javax.swing.JFrame {
                         .addGap(1, 1, 1)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(ftxtContato1, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtCep, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblEndereco2)
                         .addGap(49, 49, 49)))
@@ -222,13 +229,34 @@ public class CadastroDeCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_txtEmailActionPerformed
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
-        
-        JOptionPane.showMessageDialog(null, "Cliente " + txtEmail.getText() + " cadastrado(a) com sucesso!", "Confirmação de Cadastro", JOptionPane.WARNING_MESSAGE);
+        String nome=txtNome1.getText();
+        String endereco= txtEndereco.getText();
+        String email= txtEmail.getText();
+       
+        String Cpf=ftxtCpf1.getText().replace("-", "").replace(".","");
+        String Cep=txtCep.getText().replace(".", "").replace("-", "");
+        String Contato=txtContato.getText().replace("(", "").replace(")", "").replace("-", "");
+        // Convertido de String
+        int cpf= Integer.parseInt(Cpf);
+        int cep= Integer.parseInt(Cep);
+        int contato= Integer.parseInt(Contato);
+        //JOptionPane.showMessageDialog(null, "Cliente " + txtEmail.getText() + " cadastrado(a) com sucesso!", "Confirmação de Cadastro", JOptionPane.WARNING_MESSAGE);
+        System.out.println("nome > "+nome+"\n");
+        System.out.println("endereco > "+endereco+"\n");
+        System.out.println("email > "+email+"\n");
+        System.out.println("cpf > "+cpf+"\n");
+        System.out.println("cep > "+cep+"\n");
+        System.out.println("contato > "+contato+"\n");
+        try {
+            dao.CadastrarDao.salvarCliente(nome, cpf, contato, email, endereco,cep);
+        } catch (Exception ex) {
+            Logger.getLogger(CadastroDeCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnConfirmarActionPerformed
 
-    private void ftxtContatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ftxtContatoActionPerformed
+    private void txtContatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtContatoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_ftxtContatoActionPerformed
+    }//GEN-LAST:event_txtContatoActionPerformed
 
     private void btnFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFecharActionPerformed
         this.dispose();
@@ -242,14 +270,14 @@ public class CadastroDeCliente extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNome1ActionPerformed
 
-    private void ftxtContato1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ftxtContato1ActionPerformed
+    private void txtCepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCepActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_ftxtContato1ActionPerformed
+    }//GEN-LAST:event_txtCepActionPerformed
 
     private void formatarCampo() {
         try {
             MaskFormatter mask = new MaskFormatter("###.###.###-##");
-            mask.install(ftxtContato);
+            mask.install(txtContato);
         } catch (ParseException ex) {
             JOptionPane.showMessageDialog(null, "Insira um CPF válido!", "ERRO", JOptionPane.ERROR);
         }
@@ -287,8 +315,6 @@ public class CadastroDeCliente extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConfirmar;
     private javax.swing.JButton btnFechar;
-    private javax.swing.JFormattedTextField ftxtContato;
-    private javax.swing.JFormattedTextField ftxtContato1;
     private javax.swing.JFormattedTextField ftxtCpf1;
     private javax.swing.JLabel lblCadastroCliente;
     private javax.swing.JLabel lblContato;
@@ -297,6 +323,8 @@ public class CadastroDeCliente extends javax.swing.JFrame {
     private javax.swing.JLabel lblEndereco1;
     private javax.swing.JLabel lblEndereco2;
     private javax.swing.JLabel lblNome;
+    private javax.swing.JFormattedTextField txtCep;
+    private javax.swing.JFormattedTextField txtContato;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtEndereco;
     private javax.swing.JTextField txtNome1;

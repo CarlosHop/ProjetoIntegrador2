@@ -44,12 +44,12 @@
                                       <Component id="lblCpf1" min="-2" max="-2" attributes="0"/>
                                       <Component id="ftxtCpf1" min="-2" pref="329" max="-2" attributes="0"/>
                                       <Component id="lblEndereco2" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="ftxtContato1" min="-2" pref="328" max="-2" attributes="0"/>
+                                      <Component id="txtCep" min="-2" pref="328" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                       <Component id="lblContato" min="-2" max="-2" attributes="0"/>
-                                      <Component id="ftxtContato" min="-2" pref="363" max="-2" attributes="0"/>
+                                      <Component id="txtContato" min="-2" pref="363" max="-2" attributes="0"/>
                                       <Component id="lblEndereco1" alignment="0" min="-2" max="-2" attributes="0"/>
                                       <Group type="102" alignment="0" attributes="0">
                                           <Component id="txtEmail" max="32767" attributes="0"/>
@@ -87,7 +87,7 @@
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="lblContato" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="ftxtContato" min="-2" pref="51" max="-2" attributes="0"/>
+                      <Component id="txtContato" min="-2" pref="51" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -97,7 +97,7 @@
                       <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="txtEmail" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
-                          <Component id="ftxtContato1" alignment="3" min="-2" pref="51" max="-2" attributes="0"/>
+                          <Component id="txtCep" alignment="3" min="-2" pref="51" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" attributes="0">
@@ -184,7 +184,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnConfirmarActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JFormattedTextField" name="ftxtContato">
+    <Component class="javax.swing.JFormattedTextField" name="txtContato">
       <Properties>
         <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
           <Format format="(##)#####-####" subtype="-1" type="5"/>
@@ -194,7 +194,7 @@
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ftxtContatoActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtContatoActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnFechar">
@@ -218,6 +218,9 @@
     </Component>
     <Component class="javax.swing.JFormattedTextField" name="ftxtCpf1">
       <Properties>
+        <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
+          <Format format="###.###.###-##" subtype="-1" type="5"/>
+        </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Arial Unicode MS" size="18" style="1"/>
         </Property>
@@ -252,7 +255,7 @@
         <Property name="text" type="java.lang.String" value="CEP"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JFormattedTextField" name="ftxtContato1">
+    <Component class="javax.swing.JFormattedTextField" name="txtCep">
       <Properties>
         <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
           <Format format="#####-###" subtype="-1" type="5"/>
@@ -262,7 +265,7 @@
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ftxtContato1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtCepActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
