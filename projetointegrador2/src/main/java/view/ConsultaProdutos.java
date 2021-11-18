@@ -44,11 +44,11 @@ public class ConsultaProdutos extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Marca", "Nome", "Preço Unitário", "Quantidade"
+                "Cod", "Marca", "Nome", "Preço Unitário", "Quantidade"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.Integer.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.Integer.class
             };
 
             public Class getColumnClass(int columnIndex) {
