@@ -19,7 +19,7 @@ public class CadastrarDao {
     //==========================================================================
             // Funções para salvar informações no banco de dados
     
-    public static boolean salvarCliente(String nome, int CPF, int contato, String email, String endereco,int cep) throws Exception{
+    public static boolean salvarCliente(String nome, String CPF, String contato, String email, String endereco,String cep) throws Exception{
         boolean retorno = false;
         Connection conexao = null;
         
@@ -32,11 +32,11 @@ public class CadastrarDao {
         PreparedStatement comandoSQL = conexao.prepareStatement("INSERT INTO cliente (nome,CPF,contato,email,CEP,endereco) "
                                                               + "VALUES (?,?,?,?,?,?)");
         comandoSQL.setString(1, nome);
-        comandoSQL.setInt(2, CPF);
-        comandoSQL.setInt(3, contato);
+        comandoSQL.setString(2, CPF);
+        comandoSQL.setString(3, contato);
         comandoSQL.setString(4, email);
         comandoSQL.setString(6,endereco);
-        comandoSQL.setInt(5, cep);
+        comandoSQL.setString(5, cep);
            
         // Tentativa de inserção de dados
         int linhaAfetada=comandoSQL.executeUpdate();

@@ -233,22 +233,21 @@ public class CadastroDeCliente extends javax.swing.JFrame {
         String endereco= txtEndereco.getText();
         String email= txtEmail.getText();
        
-        String Cpf=ftxtCpf1.getText().replace("-", "").replace(".","");
-        String Cep=txtCep.getText().replace(".", "").replace("-", "");
-        String Contato=txtContato.getText().replace("(", "").replace(")", "").replace("-", "");
+        String cpf=ftxtCpf1.getText().replace("-", "").replace(".","");
+        String cep=txtCep.getText().replace(".", "").replace("-", "");
+        String contato=txtContato.getText().replace("(", "").replace(")", "").replace("-", "");
         // Convertido de String
-        int cpf= Integer.parseInt(Cpf);
-        int cep= Integer.parseInt(Cep);
-        int contato= Integer.parseInt(Contato);
+        
         //JOptionPane.showMessageDialog(null, "Cliente " + txtEmail.getText() + " cadastrado(a) com sucesso!", "Confirmação de Cadastro", JOptionPane.WARNING_MESSAGE);
-        System.out.println("nome > "+nome+"\n");
-        System.out.println("endereco > "+endereco+"\n");
-        System.out.println("email > "+email+"\n");
-        System.out.println("cpf > "+cpf+"\n");
-        System.out.println("cep > "+cep+"\n");
-        System.out.println("contato > "+contato+"\n");
+        System.out.println("nome > "+nome);
+        System.out.println("endereco > "+endereco);
+        System.out.println("email > "+email);
+        System.out.println("cpf > "+cpf);
+        System.out.println("cep > "+cep);
+        System.out.println("contato > "+contato);
         try {
             dao.CadastrarDao.salvarCliente(nome, cpf, contato, email, endereco,cep);
+            this.dispose();
         } catch (Exception ex) {
             Logger.getLogger(CadastroDeCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
