@@ -11,7 +11,7 @@ public class ConsultaProdutos extends javax.swing.JFrame {
     }
     
     public void alinhaTabela() { 
-        TableCellRenderer rendererFromHeader = jTable1.getTableHeader().getDefaultRenderer();
+        TableCellRenderer rendererFromHeader = jtbListaProdutos.getTableHeader().getDefaultRenderer();
         JLabel headerLabel = (JLabel) rendererFromHeader;
         headerLabel.setHorizontalAlignment(JLabel.CENTER);
     }
@@ -27,7 +27,7 @@ public class ConsultaProdutos extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jtbListaProdutos = new javax.swing.JTable();
         btnFechar = new javax.swing.JButton();
         txtBusca = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
@@ -37,9 +37,9 @@ public class ConsultaProdutos extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Arial Unicode MS", 1, 36)); // NOI18N
         jLabel1.setText("Consulta de Produto");
 
-        jTable1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jTable1.setFont(new java.awt.Font("Arial Unicode MS", 1, 14)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jtbListaProdutos.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jtbListaProdutos.setFont(new java.awt.Font("Arial Unicode MS", 1, 14)); // NOI18N
+        jtbListaProdutos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -55,7 +55,7 @@ public class ConsultaProdutos extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jtbListaProdutos);
 
         btnFechar.setFont(new java.awt.Font("Arial Unicode MS", 1, 18)); // NOI18N
         btnFechar.setText("Fechar");
@@ -163,7 +163,7 @@ public class ConsultaProdutos extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jtbListaProdutos;
     private javax.swing.JTextField txtBusca;
     // End of variables declaration//GEN-END:variables
 }

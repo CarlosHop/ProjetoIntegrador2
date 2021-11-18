@@ -60,6 +60,45 @@ public class CadastrarDao {
         return retorno;
         }
     
+    public static boolean salvarProduto(int codigo, String descricao,float valorUni) throws Exception{
+        boolean retorno = false;
+        Connection conexao = null;
+        
+        try{
+        // Informando o Driver a ser utilizado
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        //Utilizar o DriverManager para criar um objeto de conexão
+        conexao = DriverManager.getConnection(url, login, senha);
+            // Usando PreparedStatement
+        PreparedStatement comandoSQL = conexao.prepareStatement("INSERT INTO produto (cod,descricao,valorUnitario) "
+                                                              + "VALUES (?,?,?,)");
+        comandoSQL.setInt(1, codigo);
+        comandoSQL.setString(2, descricao);
+        comandoSQL.setFloat(3, valorUni);
+        
+           
+        // Tentativa de inserção de dados
+        int linhaAfetada=comandoSQL.executeUpdate();
+        
+        if (linhaAfetada > 0) {
+        retorno = true;
+        }else{
+        retorno = false;
+        throw new Exception("Não foi possível inserir o cliente");
+        }
+        
+            
+        }catch(ClassNotFoundException ex){
+        System.out.println("Erro:" + ex.getMessage());
+        retorno = false;
+            
+        }catch(Exception ex){
+        System.out.println("Erro:" + ex.getMessage());
+        retorno = false;
+        }
+        return retorno;
+        }
+    
                 
                 
 }
