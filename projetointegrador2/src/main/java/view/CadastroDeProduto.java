@@ -16,18 +16,18 @@ public class CadastroDeProduto extends javax.swing.JFrame {
 
         jLabel5 = new javax.swing.JLabel();
         lblTituloTela = new javax.swing.JLabel();
-        lblMarca = new javax.swing.JLabel();
+        lblCodigo = new javax.swing.JLabel();
         txtMarca = new javax.swing.JTextField();
         lblNome = new javax.swing.JLabel();
         txtNome = new javax.swing.JTextField();
-        lblQuantidade = new javax.swing.JLabel();
-        txtQuantidade = new javax.swing.JTextField();
         lblPrecoUnit = new javax.swing.JLabel();
         txtPreco = new javax.swing.JTextField();
         btnCadastraProd = new javax.swing.JButton();
         btnLimparProd = new javax.swing.JButton();
         btnConsulta = new javax.swing.JButton();
         btnFechar = new javax.swing.JButton();
+        lblMarca = new javax.swing.JLabel();
+        txtCodigoProduto = new javax.swing.JTextField();
 
         jLabel5.setFont(new java.awt.Font("Arial Unicode MS", 1, 18)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -38,8 +38,8 @@ public class CadastroDeProduto extends javax.swing.JFrame {
         lblTituloTela.setFont(new java.awt.Font("Arial Unicode MS", 1, 36)); // NOI18N
         lblTituloTela.setText("Cadastro de Produto");
 
-        lblMarca.setFont(new java.awt.Font("Arial Unicode MS", 1, 18)); // NOI18N
-        lblMarca.setText("Marca");
+        lblCodigo.setFont(new java.awt.Font("Arial Unicode MS", 1, 18)); // NOI18N
+        lblCodigo.setText("Codigo:");
 
         txtMarca.setFont(new java.awt.Font("Arial Unicode MS", 0, 14)); // NOI18N
 
@@ -47,16 +47,6 @@ public class CadastroDeProduto extends javax.swing.JFrame {
         lblNome.setText("Nome");
 
         txtNome.setFont(new java.awt.Font("Arial Unicode MS", 0, 14)); // NOI18N
-
-        lblQuantidade.setFont(new java.awt.Font("Arial Unicode MS", 1, 18)); // NOI18N
-        lblQuantidade.setText("Quantidade");
-
-        txtQuantidade.setFont(new java.awt.Font("Arial Unicode MS", 0, 14)); // NOI18N
-        txtQuantidade.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtQuantidadeActionPerformed(evt);
-            }
-        });
 
         lblPrecoUnit.setFont(new java.awt.Font("Arial Unicode MS", 1, 18)); // NOI18N
         lblPrecoUnit.setText("Preço Unitário");
@@ -106,6 +96,9 @@ public class CadastroDeProduto extends javax.swing.JFrame {
             }
         });
 
+        lblMarca.setFont(new java.awt.Font("Arial Unicode MS", 1, 18)); // NOI18N
+        lblMarca.setText("Marca");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -115,23 +108,22 @@ public class CadastroDeProduto extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblNome, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblPrecoUnit))
-                        .addGap(52, 52, 52)
+                            .addComponent(lblPrecoUnit)
+                            .addComponent(lblCodigo)
+                            .addComponent(lblMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(53, 53, 53)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtQuantidade, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 720, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(txtMarca)
-                                .addComponent(txtNome)
-                                .addComponent(txtPreco, javax.swing.GroupLayout.DEFAULT_SIZE, 720, Short.MAX_VALUE)))
-                        .addContainerGap(59, Short.MAX_VALUE))
+                            .addComponent(txtMarca)
+                            .addComponent(txtNome)
+                            .addComponent(txtPreco, javax.swing.GroupLayout.DEFAULT_SIZE, 720, Short.MAX_VALUE)
+                            .addComponent(txtCodigoProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnFechar, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 191, Short.MAX_VALUE)
                         .addComponent(btnLimparProd, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnCadastraProd, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -141,28 +133,31 @@ public class CadastroDeProduto extends javax.swing.JFrame {
                 .addComponent(lblTituloTela)
                 .addGap(312, 312, 312))
         );
+
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {txtCodigoProduto, txtMarca, txtNome, txtPreco});
+
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addComponent(lblTituloTela)
-                .addGap(43, 43, 43)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCodigoProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtMarca, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblMarca, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblNome, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(21, 21, 21)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblPrecoUnit, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtPreco, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(21, 21, 21)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
+                .addGap(64, 64, 64)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnFechar, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -170,6 +165,8 @@ public class CadastroDeProduto extends javax.swing.JFrame {
                     .addComponent(btnCadastraProd, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(21, 21, 21))
         );
+
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {txtCodigoProduto, txtMarca, txtNome, txtPreco});
 
         pack();
         setLocationRelativeTo(null);
@@ -191,10 +188,6 @@ public class CadastroDeProduto extends javax.swing.JFrame {
         ConsultaProdutos consult = new ConsultaProdutos();
         consult.setVisible(true);
     }//GEN-LAST:event_btnConsultaActionPerformed
-
-    private void txtQuantidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtQuantidadeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtQuantidadeActionPerformed
 
     private void btnFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFecharActionPerformed
         this.dispose();
@@ -220,14 +213,14 @@ public class CadastroDeProduto extends javax.swing.JFrame {
     private javax.swing.JButton btnFechar;
     private javax.swing.JButton btnLimparProd;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel lblCodigo;
     private javax.swing.JLabel lblMarca;
     private javax.swing.JLabel lblNome;
     private javax.swing.JLabel lblPrecoUnit;
-    private javax.swing.JLabel lblQuantidade;
     private javax.swing.JLabel lblTituloTela;
+    private javax.swing.JTextField txtCodigoProduto;
     private javax.swing.JTextField txtMarca;
     private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtPreco;
-    private javax.swing.JTextField txtQuantidade;
     // End of variables declaration//GEN-END:variables
 }
