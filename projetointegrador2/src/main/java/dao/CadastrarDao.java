@@ -67,6 +67,10 @@ public class CadastrarDao {
         System.out.println("Erro:" + ex.getMessage());
         retorno = false;
         }
+        finally{
+            conexao.close();
+        }
+        
         return retorno;
         }
     
@@ -112,6 +116,9 @@ public class CadastrarDao {
         }catch(Exception ex){
         System.out.println("Erro:" + ex.getMessage());
         retorno = false;
+        }
+        finally{
+            conexao.close();
         }
         return retorno;
         }
@@ -160,6 +167,10 @@ public class CadastrarDao {
         System.out.println("Erro:" + ex.getMessage());
         retorno = false;
         }
+        finally{
+            conexao.close();
+        }
+        
         return retorno;
         }
     
@@ -173,10 +184,11 @@ public class CadastrarDao {
         //Utilizar o DriverManager para criar um objeto de conexão
         conexao = DriverManager.getConnection(url, login, senha);
             // Usando PreparedStatement
-        PreparedStatement comandoSQL = conexao.prepareStatement("INSERT INTO Funcionario (Cnpj, RazaoSocial) "
-                                                              + "VALUES (?,?)");
-        comandoSQL.setString(1, novoFornecedor.getCNPJ());
+        PreparedStatement comandoSQL = conexao.prepareStatement("INSERT INTO Funcionario (Cnpj, RazaoSocial, fk_produto_cod) "
+                                                              + "VALUES (?,?, ?)");
+        comandoSQL.setString(1, novoFornecedor.getCnpj());
         comandoSQL.setString(2, novoFornecedor.getRazaoSocial());
+        comandoSQL.setString(3, novoFornecedor.getProdutoCod());
         
            
         // Tentativa de inserção de dados
@@ -198,6 +210,11 @@ public class CadastrarDao {
         System.out.println("Erro:" + ex.getMessage());
         retorno = false;
         }
+        
+        finally{
+            conexao.close();
+        }
+        
         return retorno;
         }
     

@@ -4,6 +4,7 @@ import dao.CadastrarDao;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import methods.Fornecedor;
 import methods.Produto;
 
 public class CadastroDeProduto extends javax.swing.JFrame {
@@ -110,6 +111,12 @@ public class CadastroDeProduto extends javax.swing.JFrame {
         lblCnpj.setFont(new java.awt.Font("Arial Unicode MS", 1, 18)); // NOI18N
         lblCnpj.setText("CNPJ");
 
+        txtFornecedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtFornecedorActionPerformed(evt);
+            }
+        });
+
         lblFornecedor.setFont(new java.awt.Font("Arial Unicode MS", 1, 18)); // NOI18N
         lblFornecedor.setText("Fornecedor");
 
@@ -205,10 +212,17 @@ public class CadastroDeProduto extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCadastraProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastraProdActionPerformed
-        Produto novoProduto=new Produto();
+        Produto novoProduto = new Produto();
+        Fornecedor novoFornecedor = new Fornecedor();
+        
         novoProduto.setCodigo(txtCodigoProduto.getText());
         novoProduto.setMarcaProduto(txtMarca.getText());
         novoProduto.setNomeProduto(txtNome.getText());
+        
+        novoFornecedor.setRazaoSocial(txtFornecedor.getText());
+        novoFornecedor.setCnpj(jftCnpj.getText());
+        novoFornecedor.setProdutoCod(txtCodigoProduto.getText());
+        
         String valor=txtPreco.getText();
         double Valor= Double.parseDouble(valor);
         novoProduto.setPrecoProduto(Valor);
@@ -241,6 +255,10 @@ public class CadastroDeProduto extends javax.swing.JFrame {
     private void txtPrecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrecoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPrecoActionPerformed
+
+    private void txtFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFornecedorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtFornecedorActionPerformed
 
    
     public static void main(String args[]) {
