@@ -1,6 +1,10 @@
 package view;
 
+import dao.CadastrarDao;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import methods.Produto;
 
 public class CadastroDeProduto extends javax.swing.JFrame {
 
@@ -173,6 +177,20 @@ public class CadastroDeProduto extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCadastraProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastraProdActionPerformed
+        Produto novoProduto=new Produto();
+        novoProduto.setCodigo(txtCodigoProduto.getText());
+        novoProduto.setMarcaProduto(txtMarca.getText());
+        novoProduto.setNomeProduto(txtNome.getText());
+        String valor=txtPreco.getText();
+        double Valor= Double.parseDouble(valor);
+        novoProduto.setPrecoProduto(Valor);
+        
+        try {
+            CadastrarDao.salvarProduto(novoProduto);
+        } catch (Exception ex) {
+           JOptionPane.showMessageDialog(null, "Falha no envio dos dados para a dao");
+        }
+        
         JOptionPane.showMessageDialog(null, "O produto " + txtNome.getText() + " da marca \n" + txtMarca.getText() 
                 + " foi cadastrado com sucesso!", "Confirmação de Cadastro", JOptionPane.WARNING_MESSAGE);
     }//GEN-LAST:event_btnCadastraProdActionPerformed

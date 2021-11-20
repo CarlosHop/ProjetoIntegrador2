@@ -5,8 +5,9 @@ public class Cliente {
     private String nomeCliente;
     private String cpfCliente;
     private String enderecoCliente;
-    private int cep;
+    private String cep;
     private String email;
+    private String contato;
 
     
 /*============================================================================*/
@@ -20,11 +21,14 @@ public class Cliente {
     public String getEnderecoCliente() {
         return enderecoCliente;
     }
-    public int getCep(){
+    public String getCep(){
         return cep;
     }
     public String getEmail(){
         return email;
+    }
+    public String getContato(){
+        return contato;
     }
     
 /*============================================================================*/
@@ -38,11 +42,14 @@ public class Cliente {
     public void setEnderecoCliente(String enderecoCliente) {
         this.enderecoCliente = enderecoCliente;
     }
-    public void setCep(int cep){
+    public void setCep(String cep){
         this.cep = cep;
     }
-    public void setEmail(){
+    public void setEmail(String email) {
         this.email = email;
+    }
+    public void setContato(String contato){
+        this.contato = contato;
     }
     
 }

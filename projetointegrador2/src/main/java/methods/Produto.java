@@ -2,10 +2,10 @@ package methods;
 
 public class Produto {
 
+    private String codigo;
     private String marcaProduto;
     private String nomeProduto;
     private double precoProduto;
-    private int quantProduto;
 
     
     public Produto(){}
@@ -21,10 +21,11 @@ public class Produto {
     public double getPrecoProduto() {
         return precoProduto;
     }
-    public int getQuantProduto() {
-        return quantProduto;
+
+    public String getCodigo() {
+        return codigo;
     }
-    
+   
 /*============================================================================*/
 /*                              Métodos Set's                                 */ 
     public void setMarcaProduto(String marcaProduto) {
@@ -36,7 +37,8 @@ public class Produto {
     public void setPrecoProduto(double precoProduto) {
         this.precoProduto = precoProduto;
     }
-    public void setQuantProduto(int quantProduto) {
-        this.quantProduto = quantProduto;
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
     }
+    
 }

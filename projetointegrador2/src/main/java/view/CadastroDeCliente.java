@@ -5,6 +5,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.text.MaskFormatter;
+import methods.Cliente;
 
 public class CadastroDeCliente extends javax.swing.JFrame {
 
@@ -229,24 +230,22 @@ public class CadastroDeCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_txtEmailActionPerformed
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
-        String nome=txtNome1.getText();
-        String endereco= txtEndereco.getText();
-        String email= txtEmail.getText();
-       
-        String cpf=ftxtCpf1.getText().replace("-", "").replace(".","");
-        String cep=txtCep.getText().replace(".", "").replace("-", "");
-        String contato=txtContato.getText().replace("(", "").replace(")", "").replace("-", "");
-        // Convertido de String
+       Cliente novoCliente=new Cliente();
+       novoCliente.setNomeCliente(txtNome1.getText());
+       novoCliente.setCpfCliente(ftxtCpf1.getText().replace("-", "").replace(".",""));
+       novoCliente.setEnderecoCliente(txtEndereco.getText());
+       novoCliente.setCep(txtCep.getText().replace(".", "").replace("-", ""));
+       novoCliente.setEmail(txtEmail.getText());
+       novoCliente.setContato(txtContato.getText().replace("(", "").replace(")", "").replace("-", ""));
+        //String nome=txtNome1.getText();
+        //String endereco= txtEndereco.getText();
+        //String email= txtEmail.getText();
+        //String cpf=ftxtCpf1.getText().replace("-", "").replace(".","");
+        //String cep=txtCep.getText().replace(".", "").replace("-", "");
+        //String contato=txtContato.getText().replace("(", "").replace(")", "").replace("-", "");
         
-        //JOptionPane.showMessageDialog(null, "Cliente " + txtEmail.getText() + " cadastrado(a) com sucesso!", "Confirmação de Cadastro", JOptionPane.WARNING_MESSAGE);
-        System.out.println("nome > "+nome);
-        System.out.println("endereco > "+endereco);
-        System.out.println("email > "+email);
-        System.out.println("cpf > "+cpf);
-        System.out.println("cep > "+cep);
-        System.out.println("contato > "+contato);
         try {
-            dao.CadastrarDao.salvarCliente(nome, cpf, contato, email, endereco,cep);
+            dao.CadastrarDao.salvarCliente(novoCliente);
             this.dispose();
         } catch (Exception ex) {
             Logger.getLogger(CadastroDeCliente.class.getName()).log(Level.SEVERE, null, ex);
