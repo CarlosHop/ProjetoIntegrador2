@@ -181,7 +181,6 @@ public class CadastroDeProduto extends javax.swing.JFrame {
         txtMarca.setText("");
         txtNome.setText("");
         txtPreco.setText("");
-        txtQuantidade.setText("");
     }//GEN-LAST:event_btnLimparProdActionPerformed
 
     private void btnConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultaActionPerformed

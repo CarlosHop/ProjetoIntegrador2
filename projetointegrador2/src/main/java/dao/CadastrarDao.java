@@ -60,7 +60,7 @@ public class CadastrarDao {
         return retorno;
         }
     
-    public static boolean salvarProduto(int codigo, String descricao,float valorUni) throws Exception{
+    public static boolean salvarProduto(int codigo, String descricao,float valorUni, String marca) throws Exception{
         boolean retorno = false;
         Connection conexao = null;
         
@@ -70,11 +70,12 @@ public class CadastrarDao {
         //Utilizar o DriverManager para criar um objeto de conexão
         conexao = DriverManager.getConnection(url, login, senha);
             // Usando PreparedStatement
-        PreparedStatement comandoSQL = conexao.prepareStatement("INSERT INTO produto (cod,descricao,valorUnitario) "
-                                                              + "VALUES (?,?,?,)");
+        PreparedStatement comandoSQL = conexao.prepareStatement("INSERT INTO produto (CodigoProduto,Descricao, Marca,valorUni) "
+                                                              + "VALUES (?,?,?,?)");
         comandoSQL.setInt(1, codigo);
         comandoSQL.setString(2, descricao);
-        comandoSQL.setFloat(3, valorUni);
+        comandoSQL.setFloat(4, valorUni);
+        comandoSQL.setString(3,marca);
         
            
         // Tentativa de inserção de dados
@@ -98,7 +99,88 @@ public class CadastrarDao {
         }
         return retorno;
         }
+    /*==========================================================================*/
+    public static boolean salvarCliente(String nome, String CPF, String contato, String email, String endereco,String cep) throws Exception{
+        boolean retorno = false;
+        Connection conexao = null;
+        
+        try{
+        // Informando o Driver a ser utilizado
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        //Utilizar o DriverManager para criar um objeto de conexão
+        conexao = DriverManager.getConnection(url, login, senha);
+            // Usando PreparedStatement
+        PreparedStatement comandoSQL = conexao.prepareStatement("INSERT INTO cliente (nome,CPF,contato,email,CEP,endereco) "
+                                                              + "VALUES (?,?,?,?,?,?)");
+        comandoSQL.setString(1, nome);
+        comandoSQL.setString(2, CPF);
+        comandoSQL.setString(3, contato);
+        comandoSQL.setString(4, email);
+        comandoSQL.setString(6,endereco);
+        comandoSQL.setString(5, cep);
+           
+        // Tentativa de inserção de dados
+        int linhaAfetada=comandoSQL.executeUpdate();
+        
+        if (linhaAfetada > 0) {
+        retorno = true;
+        }else{
+        retorno = false;
+        throw new Exception("Não foi possível inserir o cliente");
+        }
+        
+            
+        }catch(ClassNotFoundException ex){
+        System.out.println("Erro:" + ex.getMessage());
+        retorno = false;
+            
+        }catch(Exception ex){
+        System.out.println("Erro:" + ex.getMessage());
+        retorno = false;
+        }
+        return retorno;
+        }
     
+    public static boolean salvarFuncionario(String Nome,String endereco, String login,String Senha, String contato) throws Exception{
+        boolean retorno = false;
+        Connection conexao = null;
+        
+        try{
+        // Informando o Driver a ser utilizado
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        //Utilizar o DriverManager para criar um objeto de conexão
+        conexao = DriverManager.getConnection(url, login, senha);
+            // Usando PreparedStatement
+        PreparedStatement comandoSQL = conexao.prepareStatement("INSERT INTO produto (NomeFuncionario, EnderecoFuncionario,login,senha,contatoFuncionario) "
+                                                              + "VALUES (?,?,?,?,?)");
+        comandoSQL.setString(1, Nome);
+        comandoSQL.setString(2, endereco);
+        comandoSQL.setString(3, login);
+        comandoSQL.setString(4,Senha);
+        comandoSQL.setString(5, contato);
+        
+           
+        // Tentativa de inserção de dados
+        int linhaAfetada=comandoSQL.executeUpdate();
+        
+        if (linhaAfetada > 0) {
+        retorno = true;
+        }else{
+        retorno = false;
+        throw new Exception("Não foi possível inserir o cliente");
+        }
+        
+            
+        }catch(ClassNotFoundException ex){
+        System.out.println("Erro:" + ex.getMessage());
+        retorno = false;
+            
+        }catch(Exception ex){
+        System.out.println("Erro:" + ex.getMessage());
+        retorno = false;
+        }
+        return retorno;
+        }
                 
                 
 }
