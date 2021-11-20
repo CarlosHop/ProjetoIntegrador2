@@ -77,7 +77,8 @@ public class CadastrarFuncionario extends javax.swing.JFrame {
             }
         });
     }
-
+    
+    // teste de git
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
 }

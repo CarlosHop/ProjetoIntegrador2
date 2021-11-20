@@ -212,6 +212,11 @@ public class CadastroDeProduto extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCadastraProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastraProdActionPerformed
+        
+        if(txtFornecedor == null || jftCnpj == null || txtCodigoProduto == null || txtMarca == null || txtNome == null || txtPreco == null){
+             JOptionPane.showMessageDialog(null, "Campo Obrigatório não preenchido!", "Inormação Incorreta!", JOptionPane.WARNING_MESSAGE);
+        }
+        
         Produto novoProduto = new Produto();
         Fornecedor novoFornecedor = new Fornecedor();
         

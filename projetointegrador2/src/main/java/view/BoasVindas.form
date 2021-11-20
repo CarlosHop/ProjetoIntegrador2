@@ -92,14 +92,14 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <EmptySpace pref="55" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="btnVender" alignment="3" min="-2" pref="78" max="-2" attributes="0"/>
-                      <Group type="103" alignment="3" groupAlignment="3" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                           <Component id="btnCclientes" alignment="3" min="-2" pref="78" max="-2" attributes="0"/>
                           <Component id="btnCprodutos" alignment="3" min="-2" pref="78" max="-2" attributes="0"/>
                           <Component id="btnEstoque" alignment="3" min="-2" pref="78" max="-2" attributes="0"/>
                           <Component id="btnEntrada" alignment="3" min="-2" pref="78" max="-2" attributes="0"/>
                       </Group>
+                      <Component id="btnVender" min="-2" pref="78" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
               </Group>

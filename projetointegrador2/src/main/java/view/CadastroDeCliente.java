@@ -230,6 +230,11 @@ public class CadastroDeCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_txtEmailActionPerformed
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
+       
+        if(txtNome1 == null || ftxtCpf1 == null || txtContato == null || txtCep == null || txtEmail == null || txtEndereco == null){
+             JOptionPane.showMessageDialog(null, "Campo Obrigatório não preenchido!", "Inormação Incorreta!", JOptionPane.WARNING_MESSAGE);
+        }
+        
        Cliente novoCliente=new Cliente();
        novoCliente.setNomeCliente(txtNome1.getText());
        novoCliente.setCpfCliente(ftxtCpf1.getText().replace("-", "").replace(".",""));
