@@ -4,6 +4,8 @@ import java.sql.PreparedStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import methods.Cliente;
+import methods.Fornecedor;
+import methods.Funcionario;
 import methods.Produto;
 
 // Para executar upDates
@@ -68,6 +70,12 @@ public class CadastrarDao {
         return retorno;
         }
     
+    /**
+  *  
+  * @authot Brendo.Rotta
+  * @param novoProduto - Objeto da classe Produto
+  * @return boolean - true: Produto cadastrado, false: Falha no cadastro
+  */
     public static boolean salvarProduto(Produto novoProduto) throws Exception{
         boolean retorno = false;
         Connection conexao = null;
@@ -108,7 +116,13 @@ public class CadastrarDao {
         return retorno;
         }
     
-    public static boolean salvarFuncionario(String Nome,String endereco, String login,String Senha, String contato) throws Exception{
+    /**
+  *  
+  * @authot Brendo.Rotta
+  * @param novoFuncionario - Objeto da classe Funcionario
+  * @return boolean - true: Funcionario cadastrado, false: Falha no cadastro
+  */
+    public static boolean salvarFuncionario(Funcionario novoFuncionario) throws Exception{
         boolean retorno = false;
         Connection conexao = null;
         
@@ -120,11 +134,11 @@ public class CadastrarDao {
             // Usando PreparedStatement
         PreparedStatement comandoSQL = conexao.prepareStatement("INSERT INTO Funcionario (NomeFuncionario, EnderecoFuncionario,login,senha,contatoFuncionario) "
                                                               + "VALUES (?,?,?,?,?)");
-        comandoSQL.setString(1, Nome);
-        comandoSQL.setString(2, endereco);
-        comandoSQL.setString(3, login);
-        comandoSQL.setString(4,Senha);
-        comandoSQL.setString(5, contato);
+        comandoSQL.setString(1, novoFuncionario.getNome());
+        comandoSQL.setString(2, novoFuncionario.getEndereco());
+        comandoSQL.setString(3, novoFuncionario.getLogin());
+        comandoSQL.setString(4,novoFuncionario.getSenha());
+        comandoSQL.setString(5, novoFuncionario.getTelefone());
         
            
         // Tentativa de inserção de dados
@@ -134,7 +148,45 @@ public class CadastrarDao {
         retorno = true;
         }else{
         retorno = false;
-        throw new Exception("Não foi possível inserir o cliente");
+        throw new Exception("Não foi possível inserir o Funcionario");
+        }
+        
+            
+        }catch(ClassNotFoundException ex){
+        System.out.println("Erro:" + ex.getMessage());
+        retorno = false;
+            
+        }catch(Exception ex){
+        System.out.println("Erro:" + ex.getMessage());
+        retorno = false;
+        }
+        return retorno;
+        }
+    
+    public static boolean salvarFornecedor(Fornecedor novoFornecedor) throws Exception{
+        boolean retorno = false;
+        Connection conexao = null;
+        
+        try{
+        // Informando o Driver a ser utilizado
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        //Utilizar o DriverManager para criar um objeto de conexão
+        conexao = DriverManager.getConnection(url, login, senha);
+            // Usando PreparedStatement
+        PreparedStatement comandoSQL = conexao.prepareStatement("INSERT INTO Funcionario (Cnpj, RazaoSocial) "
+                                                              + "VALUES (?,?)");
+        comandoSQL.setString(1, novoFornecedor.getCNPJ());
+        comandoSQL.setString(2, novoFornecedor.getRazaoSocial());
+        
+           
+        // Tentativa de inserção de dados
+        int linhaAfetada=comandoSQL.executeUpdate();
+        
+        if (linhaAfetada > 0) {
+        retorno = true;
+        }else{
+        retorno = false;
+        throw new Exception("Não foi possível inserir o Fornecedor");
         }
         
             

@@ -3,9 +3,8 @@ package methods;
 public class Funcionario {
 
 private String Nome;
-private int CPF;
-private int telefone;
-private String sexo;
+private String CPF;
+private String telefone;
 private String endereco;
 private String login;
 private String senha;
@@ -17,14 +16,11 @@ public Funcionario(){}
     public String getNome() {
         return Nome;
     }
-    public int getCPF() {
+    public String getCPF() {
         return CPF;
     }
-    public int getTelefone() {
+    public String getTelefone() {
         return telefone;
-    }
-    public String getSexo() {
-        return sexo;
     }
     public String getEndereco() {
         return endereco;
@@ -40,14 +36,11 @@ public Funcionario(){}
     public void setNome(String Nome) {
         this.Nome = Nome;
     }
-    public void setCPF(int CPF) {
+    public void setCPF(String CPF) {
         this.CPF = CPF;
     }
-    public void setTelefone(int telefone) {
+    public void setTelefone(String telefone) {
         this.telefone = telefone;
-    }
-    public void setSexo(String sexo) {
-        this.sexo = sexo;
     }
     public void setEndereco(String endereco) {
         this.endereco = endereco;
