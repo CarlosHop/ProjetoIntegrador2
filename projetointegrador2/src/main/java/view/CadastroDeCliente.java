@@ -242,12 +242,6 @@ public class CadastroDeCliente extends javax.swing.JFrame {
        novoCliente.setCep(txtCep.getText().replace(".", "").replace("-", ""));
        novoCliente.setEmail(txtEmail.getText());
        novoCliente.setContato(txtContato.getText().replace("(", "").replace(")", "").replace("-", ""));
-        //String nome=txtNome1.getText();
-        //String endereco= txtEndereco.getText();
-        //String email= txtEmail.getText();
-        //String cpf=ftxtCpf1.getText().replace("-", "").replace(".","");
-        //String cep=txtCep.getText().replace(".", "").replace("-", "");
-        //String contato=txtContato.getText().replace("(", "").replace(")", "").replace("-", "");
         
         try {
             dao.CadastrarDao.salvarCliente(novoCliente);
