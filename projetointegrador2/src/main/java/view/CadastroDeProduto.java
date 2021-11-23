@@ -4,8 +4,7 @@ import dao.CadastrarDao;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import methods.Fornecedor;
-import methods.Produto;
+
 
 public class CadastroDeProduto extends javax.swing.JFrame {
 
@@ -216,9 +215,6 @@ public class CadastroDeProduto extends javax.swing.JFrame {
         if(txtFornecedor == null || jftCnpj == null || txtCodigoProduto == null || txtMarca == null || txtNome == null || txtPreco == null){
              JOptionPane.showMessageDialog(null, "Campo Obrigatório não preenchido!", "Inormação Incorreta!", JOptionPane.WARNING_MESSAGE);
         }
-        
-        Produto novoProduto = new Produto();
-        Fornecedor novoFornecedor = new Fornecedor();
         
         String valor=txtPreco.getText();
         double Valor= Double.parseDouble(valor);

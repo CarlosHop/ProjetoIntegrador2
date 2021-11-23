@@ -5,7 +5,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.text.MaskFormatter;
-import methods.Cliente;
 
 public class CadastroDeCliente extends javax.swing.JFrame {
 

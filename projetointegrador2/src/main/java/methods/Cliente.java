@@ -2,6 +2,7 @@ package methods;
 
 public class Cliente {
     
+    private int idcliente;
     private String nomeCliente;
     private String cpfCliente;
     private String enderecoCliente;
@@ -12,6 +13,9 @@ public class Cliente {
     
 /*============================================================================*/
 /*                             Métodos Get's                                  */
+    public int getIdcliente(){
+        return idcliente;
+    }
     public String getNomeCliente() {
         return nomeCliente;
     }
@@ -33,6 +37,9 @@ public class Cliente {
     
 /*============================================================================*/
 /*                             Métodos Set's                                  */
+    public void setIdcliente(int idcliente){
+        this.idcliente = idcliente;
+    }
     public void setNomeCliente(String nomeCliente) {
         this.nomeCliente = nomeCliente;
     }

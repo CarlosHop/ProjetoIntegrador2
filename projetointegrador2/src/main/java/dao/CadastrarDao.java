@@ -12,12 +12,11 @@ import methods.Produto;
 public class CadastrarDao {
 
     // Criando conexão com o banco de dados
-    public static String url = "jdbc:mysql://localhost:3306/filira_essence" + "?useTimezone=true&serverTimezone=UTC&useSSL=false";
+    public static String url = "jdbc:mysql://localhost:3306/perfumaria" + "?useTimezone=true&serverTimezone=UTC&useSSL=false";
     public static String login = "root";
     public static String senha = "";
     
-    // Criar objeto de conexão
-    Connection conexao = null;
+    
     
     
     //==========================================================================

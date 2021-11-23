@@ -1,5 +1,8 @@
 package controller;
 
+import dao.ConsultarDAO;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import methods.Cliente;
 
 /*
@@ -25,6 +28,24 @@ public class clienteController {
        
         
         return dao.CadastrarDao.salvarCliente(novoCliente);
+    }
+    
+    public static ArrayList<String[]> consulta() throws SQLException{
+        ArrayList<Cliente> listaCliente= ConsultarDAO.consultar();
+        ArrayList<String[]> retornoView= new ArrayList<>();
+        for (Cliente cliente:listaCliente){
+            retornoView.add(new String[]{
+                            String.valueOf(cliente.getIdcliente()),
+                            cliente.getNomeCliente(),
+                            cliente.getCpfCliente(),
+                            cliente.getCep(),
+                            cliente.getContato(),
+                            cliente.getEnderecoCliente(),
+                            cliente.getEmail()
+                            } // Chave do vetor de string
+                            ); // Chave do retornoView 
+        }
+   return retornoView;
     }
     
 }

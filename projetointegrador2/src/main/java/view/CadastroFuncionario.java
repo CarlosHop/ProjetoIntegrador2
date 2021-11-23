@@ -9,7 +9,6 @@ import dao.CadastrarDao;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import methods.Funcionario;
 
 /**
  *
@@ -141,12 +140,13 @@ public class CadastroFuncionario extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblNome)
-                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(lblCpf)
-                        .addComponent(jtfCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jtfCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lblNome)
+                        .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblTelefone)
@@ -189,19 +189,23 @@ public class CadastroFuncionario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-    Funcionario novoFuncionario=new Funcionario();
+    
      if(txtNome == null || jtfCpf == null || jtfTelefone== null || txtLogin == null || txtEndereco == null || txtSenha == null){
              JOptionPane.showMessageDialog(null, "Campo Obrigatório não preenchido!", "Inormação Incorreta!", JOptionPane.WARNING_MESSAGE);
         }
-     novoFuncionario.setNome(txtNome.getText());
-     novoFuncionario.setCPF(jtfCpf.getText());
-     novoFuncionario.setTelefone(jtfTelefone.getText());
-     novoFuncionario.setEndereco(txtEndereco.getText());
-     novoFuncionario.setLogin(txtLogin.getText());
-     novoFuncionario.setSenha(txtSenha.getText());
+     String Nome = txtNome.getText();
+     String cpf = jtfCpf.getText();
+     String telefone = jtfTelefone.getText();
+     String endereco = txtEndereco.getText();
+     String login = txtLogin.getText();
+     String senha = txtSenha.getText();
+     
      
         try {
-            CadastrarDao.salvarFuncionario(novoFuncionario);
+            boolean executar = controller.FuncionarioController.salvar(Nome, cpf, telefone, endereco, login, senha);
+            if(executar){
+                JOptionPane.showMessageDialog(null, "Funcionario executado");
+            }
         } catch (Exception ex) {
             Logger.getLogger(CadastroFuncionario.class.getName()).log(Level.SEVERE, null, ex);
         }
