@@ -3,7 +3,6 @@ package methods;
 public class Fornecedor {
 private String razaoSocial;
 private String cnpj;
-private String produtoCod;
 
 
 public Fornecedor(){}
@@ -23,14 +22,4 @@ public Fornecedor(){}
     public void setCnpj(String cnpj) {
         this.cnpj = cnpj;
     }
-
-    public String getProdutoCod() {
-        return produtoCod;
-    }
-
-    public void setProdutoCod(String produtoCod) {
-        this.produtoCod = produtoCod;
-    }
-
-    
     }

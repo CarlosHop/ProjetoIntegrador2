@@ -230,21 +230,23 @@ public class CadastroDeCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_txtEmailActionPerformed
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
-       
+       boolean executado=false;
         if(txtNome1 == null || ftxtCpf1 == null || txtContato == null || txtCep == null || txtEmail == null || txtEndereco == null){
              JOptionPane.showMessageDialog(null, "Campo Obrigatório não preenchido!", "Inormação Incorreta!", JOptionPane.WARNING_MESSAGE);
         }
         
-       Cliente novoCliente=new Cliente();
-       novoCliente.setNomeCliente(txtNome1.getText());
-       novoCliente.setCpfCliente(ftxtCpf1.getText().replace("-", "").replace(".",""));
-       novoCliente.setEnderecoCliente(txtEndereco.getText());
-       novoCliente.setCep(txtCep.getText().replace(".", "").replace("-", ""));
-       novoCliente.setEmail(txtEmail.getText());
-       novoCliente.setContato(txtContato.getText().replace("(", "").replace(")", "").replace("-", ""));
-        
+       String nome = txtNome1.getText();
+       String cpf =  ftxtCpf1.getText().replace("-", "").replace(".","");
+       String endereco = txtEndereco.getText();
+       String CEP = txtCep.getText().replace(".", "").replace("-", "");
+       String email = txtEmail.getText();
+       String contato = txtContato.getText().replace("(", "").replace(")", "").replace("-", "");
+       
         try {
-            dao.CadastrarDao.salvarCliente(novoCliente);
+            executado = controller.clienteController.salvar(nome, cpf, endereco, CEP, email, contato);
+            if(executado){
+            JOptionPane.showMessageDialog(null, "Cliente cadastrado");
+            }
             this.dispose();
         } catch (Exception ex) {
             Logger.getLogger(CadastroDeCliente.class.getName()).log(Level.SEVERE, null, ex);

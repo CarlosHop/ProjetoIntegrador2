@@ -21,21 +21,9 @@ public class ConsultarDAO {
     // Funções para puxar informações no banco de dados
     public void consultaCliente() {
 
-        Connection conn = null;
-        Statement st = null;
-        ResultSet rs = null;
+      
+        
 
-        try {
-
-            conn = ConsultarDAO.getConnection();
-
-            st.createStatement();
-
-            rs = st.executeQuery("select * from Cliente");
-
-            while (rs.next()) {
-
-            }
-        }
+        
     }
 }

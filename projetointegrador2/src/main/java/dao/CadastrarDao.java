@@ -80,7 +80,7 @@ public class CadastrarDao {
   * @param novoProduto - Objeto da classe Produto
   * @return boolean - true: Produto cadastrado, false: Falha no cadastro
   */
-    public static boolean salvarProduto(Produto novoProduto) throws Exception{
+    public static boolean salvarProduto(Produto novoProduto, int chaveEstrangeira) throws Exception{
         boolean retorno = false;
         Connection conexao = null;
         
@@ -185,12 +185,10 @@ public class CadastrarDao {
         conexao = DriverManager.getConnection(url, login, senha);
             // Usando PreparedStatement
         PreparedStatement comandoSQL = conexao.prepareStatement("INSERT INTO Funcionario (Cnpj, RazaoSocial, fk_produto_cod) "
-                                                              + "VALUES (?,?, ?)");
+                                                              + "VALUES (?,?)");
         comandoSQL.setString(1, novoFornecedor.getCnpj());
         comandoSQL.setString(2, novoFornecedor.getRazaoSocial());
-        comandoSQL.setString(3, novoFornecedor.getProdutoCod());
         
-           
         // Tentativa de inserção de dados
         int linhaAfetada=comandoSQL.executeUpdate();
         

@@ -220,20 +220,19 @@ public class CadastroDeProduto extends javax.swing.JFrame {
         Produto novoProduto = new Produto();
         Fornecedor novoFornecedor = new Fornecedor();
         
-        novoProduto.setCodigo(txtCodigoProduto.getText());
-        novoProduto.setMarcaProduto(txtMarca.getText());
-        novoProduto.setNomeProduto(txtNome.getText());
-        
-        novoFornecedor.setRazaoSocial(txtFornecedor.getText());
-        novoFornecedor.setCnpj(jftCnpj.getText());
-        novoFornecedor.setProdutoCod(txtCodigoProduto.getText());
-        
         String valor=txtPreco.getText();
         double Valor= Double.parseDouble(valor);
-        novoProduto.setPrecoProduto(Valor);
+        String codigo = txtCodigoProduto.getText();
+        String marca = txtMarca.getText();
+        String descricao = txtNome.getText();
         
+        String razaoSocial = txtFornecedor.getText();
+        String cnpj = jftCnpj.getText();
+       
         try {
-            CadastrarDao.salvarProduto(novoProduto);
+            boolean executado = controller.fornecedorController.salvar(razaoSocial, cnpj);
+            // Falta metodo de consultar o id que o fornecedor entrou no banco
+            boolean executadoSegundo = controller.produtoController.salvar(codigo, marca, descricao, Valor, HAND_CURSOR);
         } catch (Exception ex) {
            JOptionPane.showMessageDialog(null, "Falha no envio dos dados para a dao");
         }
