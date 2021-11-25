@@ -172,7 +172,7 @@ public class BoasVindas extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSairActionPerformed
 
     private void btnEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntradaActionPerformed
-        EntradaDeProduto novaEntrada= new EntradaDeProduto();
+        EntradaProdutos novaEntrada= new EntradaProdutos();
     }//GEN-LAST:event_btnEntradaActionPerformed
 
     /**
