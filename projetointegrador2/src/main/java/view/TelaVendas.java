@@ -58,6 +58,7 @@ public class TelaVendas extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         painel_Sup.setBorder(javax.swing.BorderFactory.createTitledBorder("Compra"));
         painel_Sup.setToolTipText("Compra");
@@ -371,9 +372,9 @@ public class TelaVendas extends javax.swing.JFrame {
                 if(retorno == 0){
                     //salvar here
                     JOptionPane.showMessageDialog(this,"Obrigado pela preferência!! \nVolte sempre!!");
-                    System.exit(0);
+                    this.dispose();
                 }else if(retorno == 2){
-                    System.exit(0);
+                    this.dispose();
                 }
 
                 
@@ -456,7 +457,7 @@ public class TelaVendas extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAdicionarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        System.exit(0);
+        this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

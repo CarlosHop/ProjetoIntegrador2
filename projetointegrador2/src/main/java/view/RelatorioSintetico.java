@@ -1,5 +1,7 @@
 package view;
         
+import javax.swing.JOptionPane;
+
 public class RelatorioSintetico extends javax.swing.JFrame {
 
     /** Creates new form RelatorioSintetico */
@@ -59,6 +61,11 @@ public class RelatorioSintetico extends javax.swing.JFrame {
 
         btnInspecionar.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         btnInspecionar.setText("INSPECIONAR");
+        btnInspecionar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInspecionarActionPerformed(evt);
+            }
+        });
 
         btnFechar.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         btnFechar.setText("FECHAR");
@@ -178,6 +185,16 @@ public class RelatorioSintetico extends javax.swing.JFrame {
     private void btnFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFecharActionPerformed
         this.dispose();
     }//GEN-LAST:event_btnFecharActionPerformed
+
+    private void btnInspecionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInspecionarActionPerformed
+        String nome = txtNomeCliente.getText();
+        
+        if(!"".equals(nome)){
+             JOptionPane.showMessageDialog(null, "Campo Obrigatório não preenchido!", "Inormação Incorreta!", JOptionPane.WARNING_MESSAGE);
+        }else if("".equals(nome)){
+            
+        }
+    }//GEN-LAST:event_btnInspecionarActionPerformed
 
     /**
      * @param args the command line arguments

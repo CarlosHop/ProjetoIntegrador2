@@ -157,12 +157,17 @@ public class EntradaProdutos extends javax.swing.JFrame {
     }//GEN-LAST:event_btnFecharActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-
+        
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarActionPerformed
-        if(txtCodigo == null || txtQuantidade == null){
+        String cod = txtCodigo.getText();
+        String qtd = txtQuantidade.getText();
+        
+        if(!"".equals(cod) || !"".equals(qtd)){
              JOptionPane.showMessageDialog(null, "Campo Obrigatório não preenchido!", "Inormação Incorreta!", JOptionPane.WARNING_MESSAGE);
+        }else if("".equals(cod) || "".equals(qtd)){
+            //Espaço para colocar a função devida do botão aqui
         }
     }//GEN-LAST:event_btnAdicionarActionPerformed
 

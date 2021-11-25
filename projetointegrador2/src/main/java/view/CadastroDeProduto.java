@@ -212,19 +212,18 @@ public class CadastroDeProduto extends javax.swing.JFrame {
 
     private void btnCadastraProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastraProdActionPerformed
         
-        if(txtFornecedor == null || jftCnpj == null || txtCodigoProduto == null || txtMarca == null || txtNome == null || txtPreco == null){
-             JOptionPane.showMessageDialog(null, "Campo Obrigatório não preenchido!", "Inormação Incorreta!", JOptionPane.WARNING_MESSAGE);
-        }
-        
         String valor=txtPreco.getText();
-        double Valor= Double.parseDouble(valor);
         String codigo = txtCodigoProduto.getText();
         String marca = txtMarca.getText();
         String descricao = txtNome.getText();
         
         String razaoSocial = txtFornecedor.getText();
         String cnpj = jftCnpj.getText();
-       
+        
+       if(!"".equals(valor) || !"".equals(codigo) || !"".equals(marca) || !"".equals(descricao) || !"".equals(razaoSocial) || !"".equals(cnpj)){
+        
+        double Valor= Double.parseDouble(valor);
+           
         try {
             boolean executado = controller.fornecedorController.salvar(razaoSocial, cnpj);
             // Falta metodo de consultar o id que o fornecedor entrou no banco
@@ -235,6 +234,11 @@ public class CadastroDeProduto extends javax.swing.JFrame {
         
         JOptionPane.showMessageDialog(null, "O produto " + txtNome.getText() + " da marca \n" + txtMarca.getText() 
                 + " foi cadastrado com sucesso!", "Confirmação de Cadastro", JOptionPane.WARNING_MESSAGE);
+        
+        }else if("".equals(valor) || "".equals(codigo) || "".equals(marca) || "".equals(descricao) || "".equals(razaoSocial) || "".equals(cnpj)){
+                JOptionPane.showMessageDialog(null, "Campo Obrigatório não preenchido!", "Inormação Incorreta!", JOptionPane.WARNING_MESSAGE);
+        } 
+        
     }//GEN-LAST:event_btnCadastraProdActionPerformed
 
     private void btnLimparProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparProdActionPerformed

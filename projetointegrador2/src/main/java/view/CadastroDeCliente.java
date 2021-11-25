@@ -229,17 +229,21 @@ public class CadastroDeCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_txtEmailActionPerformed
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
-       boolean executado=false;
-        if(txtNome1 == null || ftxtCpf1 == null || txtContato == null || txtCep == null || txtEmail == null || txtEndereco == null){
-             JOptionPane.showMessageDialog(null, "Campo Obrigatório não preenchido!", "Inormação Incorreta!", JOptionPane.WARNING_MESSAGE);
-        }
-        
+       
+        boolean executado=false;
+       
        String nome = txtNome1.getText();
        String cpf =  ftxtCpf1.getText().replace("-", "").replace(".","");
        String endereco = txtEndereco.getText();
        String CEP = txtCep.getText().replace(".", "").replace("-", "");
        String email = txtEmail.getText();
        String contato = txtContato.getText().replace("(", "").replace(")", "").replace("-", "");
+       
+        if("".equals(nome) || "".equals(cpf) || "".equals(endereco) || "".equals(CEP) || "".equals(email) || "".equals(contato)){
+            
+             JOptionPane.showMessageDialog(null, "Campo Obrigatório não preenchido!", "Inormação Incorreta!", JOptionPane.WARNING_MESSAGE);
+             
+        }else if(!"".equals(nome) || !"".equals(cpf) || !"".equals(endereco) || !"".equals(CEP) || !"".equals(email) || !"".equals(contato)){
        
         try {
             executado = controller.clienteController.salvar(nome, cpf, endereco, CEP, email, contato);
@@ -249,6 +253,7 @@ public class CadastroDeCliente extends javax.swing.JFrame {
             this.dispose();
         } catch (Exception ex) {
             Logger.getLogger(CadastroDeCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
         }
     }//GEN-LAST:event_btnConfirmarActionPerformed
 

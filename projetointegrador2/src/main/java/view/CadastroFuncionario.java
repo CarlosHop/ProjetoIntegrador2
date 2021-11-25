@@ -189,28 +189,27 @@ public class CadastroFuncionario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+     
+        String Nome = txtNome.getText();
+        String cpf = jtfCpf.getText();
+        String telefone = jtfTelefone.getText();
+        String endereco = txtEndereco.getText();
+        String login = txtLogin.getText();
+        String senha = txtSenha.getText();
     
-     if(txtNome == null || jtfCpf == null || jtfTelefone== null || txtLogin == null || txtEndereco == null || txtSenha == null){
+        if(!"".equals(Nome) || !"".equals(cpf) || !"".equals(telefone) || !"".equals(endereco) || !"".equals(login) || !"".equals(senha)){
              JOptionPane.showMessageDialog(null, "Campo Obrigatório não preenchido!", "Inormação Incorreta!", JOptionPane.WARNING_MESSAGE);
-        }
-     String Nome = txtNome.getText();
-     String cpf = jtfCpf.getText();
-     String telefone = jtfTelefone.getText();
-     String endereco = txtEndereco.getText();
-     String login = txtLogin.getText();
-     String senha = txtSenha.getText();
-     
-     
-        try {
-            boolean executar = controller.FuncionarioController.salvar(Nome, cpf, telefone, endereco, login, senha);
-            if(executar){
-                JOptionPane.showMessageDialog(null, "Funcionario executado");
+                 
+        }else if("".equals(Nome) || "".equals(cpf) || "".equals(telefone) || "".equals(endereco) || "".equals(login) || "".equals(senha)){
+            try {
+                boolean executar = controller.FuncionarioController.salvar(Nome, cpf, telefone, endereco, login, senha);
+                if (executar) {
+                    JOptionPane.showMessageDialog(null, "Funcionario executado");
+                }
+            } catch (Exception ex) {
+                Logger.getLogger(CadastroFuncionario.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } catch (Exception ex) {
-            Logger.getLogger(CadastroFuncionario.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
