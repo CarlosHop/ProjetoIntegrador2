@@ -31,17 +31,17 @@ public class clienteController {
     }
     
     public static ArrayList<String[]> consulta() throws SQLException{
-        ArrayList<Cliente> listaCliente= ConsultarDAO.consultar();
+        ArrayList<Cliente> listaCliente= ConsultarDAO.consultarCliente();
         ArrayList<String[]> retornoView= new ArrayList<>();
         for (Cliente cliente:listaCliente){
             retornoView.add(new String[]{
                             String.valueOf(cliente.getIdcliente()),
-                            cliente.getNomeCliente(),
-                            cliente.getCpfCliente(),
-                            cliente.getCep(),
-                            cliente.getContato(),
-                            cliente.getEnderecoCliente(),
-                            cliente.getEmail()
+                            String.valueOf(cliente.getNomeCliente()),
+                            String.valueOf(cliente.getCpfCliente()),
+                            String.valueOf(cliente.getCep()),
+                            String.valueOf(cliente.getContato()),
+                            String.valueOf(cliente.getEnderecoCliente()),
+                            String.valueOf(cliente.getEmail())
                             } // Chave do vetor de string
                             ); // Chave do retornoView 
         }

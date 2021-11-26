@@ -18,6 +18,8 @@ public class EntradaProdutos extends javax.swing.JFrame {
      */
     public EntradaProdutos() {
         initComponents();
+        setResizable(false);
+        setLocationRelativeTo(null);
     }
 
     /**

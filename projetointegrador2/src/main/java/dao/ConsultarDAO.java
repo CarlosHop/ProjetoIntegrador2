@@ -21,7 +21,7 @@ public class ConsultarDAO {
 
     //==========================================================================
     // Funções para puxar informações no banco de dados
-    public static ArrayList<Cliente> consultar() throws SQLException{
+    public static ArrayList<Cliente> consultarCliente() throws SQLException{
         // Array list para armazenar os valores
         ArrayList<Cliente> listaClientes= new ArrayList<>();
         // Criar objeto de conexão
