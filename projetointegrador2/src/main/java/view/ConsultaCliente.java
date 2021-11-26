@@ -45,7 +45,8 @@ public class ConsultaCliente extends javax.swing.JFrame {
         btnBuscar = new javax.swing.JButton();
         btnEditar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -141,8 +142,8 @@ public class ConsultaCliente extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnEditar))
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 333, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -153,8 +154,14 @@ public class ConsultaCliente extends javax.swing.JFrame {
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
        DefaultTableModel tabelaCliente = (DefaultTableModel) jTable1.getModel();
-        if(txtNome == null && jftCpf == null){
-           
+       
+       String nomeBusca = txtNome.getText();
+       String cpfBusca = jftCpf.getText().replace(".","").replace("-","");
+        System.out.println(nomeBusca);
+        System.out.println(cpfBusca);
+       String teste = "";
+       
+        if(!nomeBusca.equals(teste) && !cpfBusca.equals(teste)){
            try {
                ArrayList<String[]> listaCliente = clienteController.consulta();
                for(String[] cliente : listaCliente)
@@ -164,7 +171,9 @@ public class ConsultaCliente extends javax.swing.JFrame {
                    } catch (SQLException ex) {
                JOptionPane.showMessageDialog(null, "Erro na consulta");
            }
-       } // Chave if
+       }else if(nomeBusca.equals(teste) && cpfBusca.equals(teste)){
+           JOptionPane.showMessageDialog(null, "Campos de buscas vazios!");
+       }
         
         
     }//GEN-LAST:event_btnBuscarActionPerformed

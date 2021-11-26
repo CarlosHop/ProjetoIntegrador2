@@ -32,10 +32,6 @@ public class CadastroDeProduto extends javax.swing.JFrame {
         btnFechar = new javax.swing.JButton();
         lblMarca = new javax.swing.JLabel();
         txtCodigoProduto = new javax.swing.JTextField();
-        lblCnpj = new javax.swing.JLabel();
-        txtFornecedor = new javax.swing.JTextField();
-        lblFornecedor = new javax.swing.JLabel();
-        jftCnpj = new javax.swing.JFormattedTextField();
 
         jLabel5.setFont(new java.awt.Font("Arial Unicode MS", 1, 18)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -107,18 +103,6 @@ public class CadastroDeProduto extends javax.swing.JFrame {
         lblMarca.setFont(new java.awt.Font("Arial Unicode MS", 1, 18)); // NOI18N
         lblMarca.setText("Marca");
 
-        lblCnpj.setFont(new java.awt.Font("Arial Unicode MS", 1, 18)); // NOI18N
-        lblCnpj.setText("CNPJ");
-
-        txtFornecedor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtFornecedorActionPerformed(evt);
-            }
-        });
-
-        lblFornecedor.setFont(new java.awt.Font("Arial Unicode MS", 1, 18)); // NOI18N
-        lblFornecedor.setText("Fornecedor");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -140,28 +124,17 @@ public class CadastroDeProduto extends javax.swing.JFrame {
                         .addComponent(btnCadastraProd, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(48, 48, 48))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(9, 9, 9)
-                                .addComponent(lblFornecedor)
-                                .addGap(28, 28, 28)
-                                .addComponent(txtFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(lblCnpj)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jftCnpj))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblNome, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblPrecoUnit)
-                                    .addComponent(lblCodigo)
-                                    .addComponent(lblMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(53, 53, 53)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtMarca)
-                                    .addComponent(txtNome)
-                                    .addComponent(txtPreco, javax.swing.GroupLayout.DEFAULT_SIZE, 720, Short.MAX_VALUE)
-                                    .addComponent(txtCodigoProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblNome, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblPrecoUnit)
+                            .addComponent(lblCodigo)
+                            .addComponent(lblMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(53, 53, 53)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtMarca)
+                            .addComponent(txtNome)
+                            .addComponent(txtPreco, javax.swing.GroupLayout.DEFAULT_SIZE, 720, Short.MAX_VALUE)
+                            .addComponent(txtCodigoProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
@@ -172,13 +145,6 @@ public class CadastroDeProduto extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addComponent(lblTituloTela)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lblFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(lblCnpj, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jftCnpj, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -201,10 +167,10 @@ public class CadastroDeProduto extends javax.swing.JFrame {
                     .addComponent(btnFechar, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnLimparProd, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCadastraProd, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(21, 21, 21))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {txtCodigoProduto, txtFornecedor, txtMarca, txtNome, txtPreco});
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {txtCodigoProduto, txtMarca, txtNome, txtPreco});
 
         pack();
         setLocationRelativeTo(null);
@@ -217,15 +183,11 @@ public class CadastroDeProduto extends javax.swing.JFrame {
         String marca = txtMarca.getText();
         String descricao = txtNome.getText();
         
-        String razaoSocial = txtFornecedor.getText();
-        String cnpj = jftCnpj.getText();
-        
-       if(!"".equals(valor) || !"".equals(codigo) || !"".equals(marca) || !"".equals(descricao) || !"".equals(razaoSocial) || !"".equals(cnpj)){
+       if(!"".equals(valor) || !"".equals(codigo) || !"".equals(marca) || !"".equals(descricao)){
         
         double Valor= Double.parseDouble(valor);
            
         try {
-            boolean executado = controller.fornecedorController.salvar(razaoSocial, cnpj);
             // Falta metodo de consultar o id que o fornecedor entrou no banco
             boolean executadoSegundo = controller.produtoController.salvar(codigo, marca, descricao, Valor, HAND_CURSOR);
         } catch (Exception ex) {
@@ -235,7 +197,7 @@ public class CadastroDeProduto extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, "O produto " + txtNome.getText() + " da marca \n" + txtMarca.getText() 
                 + " foi cadastrado com sucesso!", "Confirmação de Cadastro", JOptionPane.WARNING_MESSAGE);
         
-        }else if("".equals(valor) || "".equals(codigo) || "".equals(marca) || "".equals(descricao) || "".equals(razaoSocial) || "".equals(cnpj)){
+        }else if("".equals(valor) || "".equals(codigo) || "".equals(marca) || "".equals(descricao)){
                 JOptionPane.showMessageDialog(null, "Campo Obrigatório não preenchido!", "Inormação Incorreta!", JOptionPane.WARNING_MESSAGE);
         } 
         
@@ -260,10 +222,6 @@ public class CadastroDeProduto extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPrecoActionPerformed
 
-    private void txtFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFornecedorActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtFornecedorActionPerformed
-
    
     public static void main(String args[]) {
 
@@ -280,16 +238,12 @@ public class CadastroDeProduto extends javax.swing.JFrame {
     private javax.swing.JButton btnFechar;
     private javax.swing.JButton btnLimparProd;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JFormattedTextField jftCnpj;
-    private javax.swing.JLabel lblCnpj;
     private javax.swing.JLabel lblCodigo;
-    private javax.swing.JLabel lblFornecedor;
     private javax.swing.JLabel lblMarca;
     private javax.swing.JLabel lblNome;
     private javax.swing.JLabel lblPrecoUnit;
     private javax.swing.JLabel lblTituloTela;
     private javax.swing.JTextField txtCodigoProduto;
-    private javax.swing.JTextField txtFornecedor;
     private javax.swing.JTextField txtMarca;
     private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtPreco;

@@ -58,5 +58,4 @@ public class Cliente {
     public void setContato(String contato){
         this.contato = contato;
     }
-    
 }
