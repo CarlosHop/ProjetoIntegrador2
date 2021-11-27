@@ -238,6 +238,7 @@ public class CadastroDeCliente extends javax.swing.JFrame {
        String CEP = txtCep.getText().replace(".", "").replace("-", "");
        String email = txtEmail.getText();
        String contato = txtContato.getText().replace("(", "").replace(")", "").replace("-", "");
+        System.out.println("Contato > "+contato);
        
         if("".equals(nome) || "".equals(cpf) || "".equals(endereco) || "".equals(CEP) || "".equals(email) || "".equals(contato)){
             

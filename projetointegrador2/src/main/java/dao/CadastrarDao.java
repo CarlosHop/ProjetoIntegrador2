@@ -4,7 +4,6 @@ import java.sql.PreparedStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import methods.Cliente;
-import methods.Fornecedor;
 import methods.Funcionario;
 import methods.Produto;
 
@@ -38,8 +37,9 @@ public class CadastrarDao {
         //Utilizar o DriverManager para criar um objeto de conexão
         conexao = DriverManager.getConnection(url, login, senha);
             // Usando PreparedStatement
-        PreparedStatement comandoSQL = conexao.prepareStatement("INSERT INTO Cliente (NomeCliente,CpfCliente,Contato,email,CepCliente,Endereco) "
+        PreparedStatement comandoSQL = conexao.prepareStatement("INSERT INTO clientes (nome,cpf,contato,email,cep,endereco) "
                                                               + "VALUES (?,?,?,?,?,?)");
+
         comandoSQL.setString(1, novoCliente.getNomeCliente());
         comandoSQL.setString(2, novoCliente.getCpfCliente());
         comandoSQL.setString(3, novoCliente.getContato());
@@ -72,7 +72,6 @@ public class CadastrarDao {
         
         return retorno;
         }
-    
     /**
   *  
   * @authot Brendo.Rotta
@@ -121,7 +120,6 @@ public class CadastrarDao {
         }
         return retorno;
         }
-    
     /**
   *  
   * @authot Brendo.Rotta
@@ -173,7 +171,7 @@ public class CadastrarDao {
         return retorno;
         }
     
-    public static boolean salvarFornecedor(Fornecedor novoFornecedor) throws Exception{
+    public static boolean ExcluirCliente(int ID) throws Exception{
         boolean retorno = false;
         Connection conexao = null;
         
@@ -183,11 +181,9 @@ public class CadastrarDao {
         //Utilizar o DriverManager para criar um objeto de conexão
         conexao = DriverManager.getConnection(url, login, senha);
             // Usando PreparedStatement
-        PreparedStatement comandoSQL = conexao.prepareStatement("INSERT INTO Funcionario (Cnpj, RazaoSocial, fk_produto_cod) "
-                                                              + "VALUES (?,?)");
-        comandoSQL.setString(1, novoFornecedor.getCnpj());
-        comandoSQL.setString(2, novoFornecedor.getRazaoSocial());
-        
+        PreparedStatement comandoSQL = conexao.prepareStatement("DELETE clientes WHERE idCliente = ? ");
+        comandoSQL.setInt(1, ID);
+           
         // Tentativa de inserção de dados
         int linhaAfetada=comandoSQL.executeUpdate();
         
@@ -195,7 +191,7 @@ public class CadastrarDao {
         retorno = true;
         }else{
         retorno = false;
-        throw new Exception("Não foi possível inserir o Fornecedor");
+        throw new Exception("Não foi possível inserir o cliente");
         }
         
             
@@ -207,7 +203,6 @@ public class CadastrarDao {
         System.out.println("Erro:" + ex.getMessage());
         retorno = false;
         }
-        
         finally{
             conexao.close();
         }
