@@ -167,6 +167,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="BUSCAR"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBuscarActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -260,12 +263,12 @@
         </Component>
         <Component class="com.toedter.calendar.JDateChooser" name="jdcDataInicio">
           <Properties>
-            <Property name="dateFormatString" type="java.lang.String" value="yyyy/MM/dd"/>
+            <Property name="dateFormatString" type="java.lang.String" value="yyyy-MM-dd"/>
           </Properties>
         </Component>
         <Component class="com.toedter.calendar.JDateChooser" name="jdcDataFinal">
           <Properties>
-            <Property name="dateFormatString" type="java.lang.String" value="yyyy/MM/dd"/>
+            <Property name="dateFormatString" type="java.lang.String" value="yyyy-MM-dd"/>
           </Properties>
         </Component>
       </SubComponents>

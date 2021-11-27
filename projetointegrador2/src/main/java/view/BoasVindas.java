@@ -222,15 +222,17 @@ public class BoasVindas extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRelatorioSinteticoActionPerformed
 
     private void btnConsultaProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultaProdutoActionPerformed
-        ConsultaCliente novaConsulta=new ConsultaCliente();
+        ConsultaProdutos novaConsulta=new ConsultaProdutos();
         novaConsulta.setResizable(false);
         novaConsulta.setVisible(true);
         novaConsulta.setLocationRelativeTo(null);
-        
     }//GEN-LAST:event_btnConsultaProdutoActionPerformed
 
     private void btnConsultaClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultaClienteActionPerformed
-        // TODO add your handling code here:
+       ConsultaCliente novaConsulta=new ConsultaCliente();
+        novaConsulta.setResizable(false);
+        novaConsulta.setVisible(true);
+        novaConsulta.setLocationRelativeTo(null);
     }//GEN-LAST:event_btnConsultaClienteActionPerformed
 
     /**

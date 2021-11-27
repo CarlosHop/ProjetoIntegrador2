@@ -3,6 +3,7 @@ package view;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
+import java.text.SimpleDateFormat;
 
 public class RelatorioSintetico extends javax.swing.JFrame {
 
@@ -75,6 +76,11 @@ public class RelatorioSintetico extends javax.swing.JFrame {
         lblTotal.setText("TOTAL:");
 
         btnBuscar.setText("BUSCAR");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jpBuscaLayout = new javax.swing.GroupLayout(jpBusca);
         jpBusca.setLayout(jpBuscaLayout);
@@ -127,9 +133,9 @@ public class RelatorioSintetico extends javax.swing.JFrame {
 
         lblNome.setText("NOME:");
 
-        jdcDataInicio.setDateFormatString("yyyy/MM/dd");
+        jdcDataInicio.setDateFormatString("yyyy-MM-dd");
 
-        jdcDataFinal.setDateFormatString("yyyy/MM/dd");
+        jdcDataFinal.setDateFormatString("yyyy-MM-dd");
 
         javax.swing.GroupLayout jpFiltrosLayout = new javax.swing.GroupLayout(jpFiltros);
         jpFiltros.setLayout(jpFiltrosLayout);
@@ -239,6 +245,20 @@ public class RelatorioSintetico extends javax.swing.JFrame {
             
         }
     }//GEN-LAST:event_btnInspecionarActionPerformed
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+       Date dataComeco= jdcDataInicio.getDate();
+       Date dataFinal = jdcDataFinal.getDate(); 
+        
+       if(dataComeco.after(dataFinal)){
+           JOptionPane.showConfirmDialog(null, "Data Incorreta");
+           
+       }else{
+           
+       }
+       
+       
+    }//GEN-LAST:event_btnBuscarActionPerformed
 
     /**
      * @param args the command line arguments
