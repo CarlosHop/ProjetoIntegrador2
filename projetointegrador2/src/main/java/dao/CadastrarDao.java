@@ -37,7 +37,7 @@ public class CadastrarDao {
         //Utilizar o DriverManager para criar um objeto de conexão
         conexao = DriverManager.getConnection(url, login, senha);
             // Usando PreparedStatement
-        PreparedStatement comandoSQL = conexao.prepareStatement("INSERT INTO clientes (nome,cpf,contato,email,cep,endereco) "
+        PreparedStatement comandoSQL = conexao.prepareStatement("INSERT INTO cliente (nome,cpf,contato,email,cep,endereco) "
                                                               + "VALUES (?,?,?,?,?,?)");
 
         comandoSQL.setString(1, novoCliente.getNomeCliente());
@@ -82,7 +82,7 @@ public class CadastrarDao {
         //Utilizar o DriverManager para criar um objeto de conexão
         conexao = DriverManager.getConnection(url, login, senha);
             // Usando PreparedStatement
-        PreparedStatement comandoSQL = conexao.prepareStatement("DELETE FROM clientes WHERE id = ? ");
+        PreparedStatement comandoSQL = conexao.prepareStatement("DELETE FROM cliente WHERE id = ? ");
         comandoSQL.setInt(1,ID);
            
         // Tentativa de inserção de dados
@@ -120,7 +120,7 @@ public class CadastrarDao {
         //Utilizar o DriverManager para criar um objeto de conexão
         conexao = DriverManager.getConnection(url, login, senha);
             // Usando PreparedStatement
-        PreparedStatement comandoSQL = conexao.prepareStatement("UPDATE clientes SET "
+        PreparedStatement comandoSQL = conexao.prepareStatement("UPDATE cliente SET "
                                                               + "nome = ?, cpf =?, contato = ?, email = ?, "
                                                               + "cep = ?, endereco = ? WHERE id = ? "
                                                               );
