@@ -263,19 +263,13 @@ public class CadastroDeCliente extends javax.swing.JFrame {
        
        
         if(alterarCliente != null){
-         int ID=Integer.parseInt(this.lblID.getText())  ;
-         String nome = txtNome1.getText();
+         int ID=Integer.parseInt(this.lblID.getText());
+       String nome = txtNome1.getText();
        String cpf =  ftxtCpf1.getText().replace("-", "").replace(".","");
        String endereco = txtEndereco.getText();
        String CEP = txtCep.getText().replace(".", "").replace("-", "");
        String email = txtEmail.getText();
        String contato = txtContato.getText().replace("(", "").replace(")", "").replace("-", "");
-       if(txtCep == null){
-       this.txtCep.setText("default");
-       }
-       if(txtEndereco == null){
-       this.txtEndereco.setText("default");
-       }
        
         if("".equals(nome) || "".equals(cpf) || "".equals(endereco) || "".equals(CEP) || "".equals(email) || "".equals(contato)){
             

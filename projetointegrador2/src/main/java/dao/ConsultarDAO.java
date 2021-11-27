@@ -5,7 +5,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import methods.Cliente;
 import methods.Funcionario;
@@ -47,7 +46,7 @@ public class ConsultarDAO {
         // Loop para acrescentar todos os clientes no arraylist
         while(rs.next()){
         Cliente umCliente = new Cliente();
-        umCliente.setIdcliente(rs.getInt("idCliente"));
+        umCliente.setIdcliente(rs.getInt("id"));
         umCliente.setNomeCliente(rs.getString("nome"));
         umCliente.setCpfCliente(rs.getString("cpf"));
         umCliente.setCep(rs.getString("cep"));
@@ -97,7 +96,7 @@ public class ConsultarDAO {
         // Loop para acrescentar todos os clientes no arraylist
         while(rs.next()){
         Cliente umCliente = new Cliente();
-        umCliente.setIdcliente(rs.getInt("idCliente"));
+        umCliente.setIdcliente(rs.getInt("id"));
         umCliente.setNomeCliente(rs.getString("nome"));
         umCliente.setCpfCliente(rs.getString("cpf"));
         umCliente.setCep(rs.getString("cep"));
@@ -147,7 +146,7 @@ public class ConsultarDAO {
         // Loop para acrescentar todos os clientes no arraylist
         while(rs.next()){
         Cliente umCliente = new Cliente();
-        umCliente.setIdcliente(rs.getInt("idCliente"));
+        umCliente.setIdcliente(rs.getInt("id"));
         umCliente.setNomeCliente(rs.getString("nome"));
         umCliente.setCpfCliente(rs.getString("cpf"));
         umCliente.setCep(rs.getString("cep"));
@@ -196,7 +195,7 @@ public class ConsultarDAO {
         // Loop para acrescentar todos os clientes no arraylist
         while(rs.next()){
         
-        listaClientes.setIdcliente(rs.getInt("idCliente"));
+        listaClientes.setIdcliente(rs.getInt("id"));
         listaClientes.setNomeCliente(rs.getString("nome"));
         listaClientes.setCpfCliente(rs.getString("cpf"));
         listaClientes.setCep(rs.getString("cep"));
@@ -364,7 +363,51 @@ public class ConsultarDAO {
         
      return listaProduto;   
     }
-
+    public static Produto consultarProdutoId(int ID) throws SQLException{
+        // Array list para armazenar os valores
+        Produto listaClientes= new Produto();
+        // Criar objeto de conexão
+        Connection conexao = null;
+        // Statement para comando no banco de dados 
+        PreparedStatement instrucaoSQL = null;
+        // Atribuir o resultado da pesquisa em quantidade de linhas para o laço
+        ResultSet rs =null;
+        
+        
+        try {
+        //  1 Informando o Driver a ser utilizado
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        //  2 Utilizar o DriverManager para criar um objeto de conexão
+        conexao = DriverManager.getConnection(url, login, senha);
+        //  3 execução da consulta geral de clientes
+        instrucaoSQL = conexao.prepareStatement("SELECT * FROM produto WHERE id = ? ");
+        instrucaoSQL.setInt(1, ID);
+        rs = instrucaoSQL.executeQuery();
+        
+        
+        // Loop para acrescentar todos os clientes no arraylist
+        while(rs.next()){
+        
+        listaClientes.setCodigo(rs.getInt("id"));
+        listaClientes.setNomeProduto(rs.getString("nome"));
+        listaClientes.setMarcaProduto(rs.getString("marca"));
+        listaClientes.setPrecoProduto(rs.getDouble("valoruni"));
+        
+        }
+        
+        } catch (Exception e) {
+            listaClientes = null;
+        }finally{
+        if(conexao!=null){
+            conexao.close(); 
+        }
+        if(rs!=null){
+            rs.close(); 
+        }
+        }
+        
+     return listaClientes;   
+    }
  /*================================================================================================================*/
 /*                                     Metodos de pesquisa Funcionario                                             */
     /**
@@ -399,7 +442,6 @@ public class ConsultarDAO {
         Funcionario umFuncionario = new Funcionario();
         umFuncionario.setId(rs.getInt("id"));
         umFuncionario.setNome(rs.getString("nome"));
-        umFuncionario.setCPF(rs.getString("cpf"));
         umFuncionario.setTelefone(rs.getString("contato"));
         umFuncionario.setEndereco(rs.getString("endereco"));
         
@@ -447,7 +489,6 @@ public class ConsultarDAO {
         Funcionario umFuncionario = new Funcionario();
         umFuncionario.setId(rs.getInt("id"));
         umFuncionario.setNome(rs.getString("nome"));
-        umFuncionario.setCPF(rs.getString("cpf"));
         umFuncionario.setTelefone(rs.getString("contato"));
         umFuncionario.setEndereco(rs.getString("endereco"));
         
@@ -467,7 +508,7 @@ public class ConsultarDAO {
         
      return listaFuncionario;   
     }
-    public static ArrayList<Produto> consultarFuncionarioPorCodigo(Produto funcionarioExistente) throws SQLException{
+    public static ArrayList<Funcionario> consultarFuncionarioPorId(Funcionario funcionarioExistente) throws SQLException{
         // Array list para armazenar os valores
         ArrayList<Funcionario> listaFuncionario= new ArrayList<>();
         // Criar objeto de conexão
@@ -485,21 +526,19 @@ public class ConsultarDAO {
         conexao = DriverManager.getConnection(url, login, senha);
         //  3 execução da consulta geral de clientes
         instrucaoSQL = conexao.prepareStatement("SELECT * FROM produto WHERE id = ?");
-        instrucaoSQL.setInt(1, funcionarioExistente.getCodigo());
+        instrucaoSQL.setInt(1, funcionarioExistente.getId());
         
         rs = instrucaoSQL.executeQuery();
         
         
-        // Loop para acrescentar todos os clientes no arraylist
        while(rs.next()){
-        Produto umProduto = new Produto();
-        umProduto.setCodigo(rs.getInt("id"));
-        umProduto.setMarcaProduto(rs.getString("marca"));
-        umProduto.setNomeProduto(rs.getString("descricao"));
-        umProduto.setPrecoProduto(rs.getDouble("valoruni"));
-        umProduto.setEstoque(rs.getInt("estoque"));
+        Funcionario umFuncionario = new Funcionario();
+        umFuncionario.setId(rs.getInt("id"));
+        umFuncionario.setNome(rs.getString("nome"));
+        umFuncionario.setTelefone(rs.getString("contato"));
+        umFuncionario.setEndereco(rs.getString("endereco"));
         
-        listaFuncionario.add(umProduto);
+        listaFuncionario.add(umFuncionario);
         }
         
         } catch (Exception e) {
@@ -513,8 +552,7 @@ public class ConsultarDAO {
         }
         }
         
-     return listaFuncionario;   
+     return listaFuncionario; 
     }
-
- 
+    
 }

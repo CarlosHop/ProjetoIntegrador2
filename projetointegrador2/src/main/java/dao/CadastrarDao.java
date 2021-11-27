@@ -21,7 +21,7 @@ public class CadastrarDao {
     //==========================================================================
             // Funções para salvar informações no banco de dados
     
-  /**
+    /**
   *  
   * @authot Brendo.Rotta
   * @param novoCliente - Objeto da classe cliente
@@ -158,13 +158,14 @@ public class CadastrarDao {
         
         return retorno;
         }
+    
     /**
   *  
   * @authot Brendo.Rotta
   * @param novoProduto - Objeto da classe Produto
   * @return boolean - true: Produto cadastrado, false: Falha no cadastro
   */
-    public static boolean salvarProduto(Produto novoProduto, int chaveEstrangeira) throws Exception{
+    public static boolean salvarProduto(Produto novoProduto) throws Exception{
         boolean retorno = false;
         Connection conexao = null;
         
@@ -174,12 +175,12 @@ public class CadastrarDao {
         //Utilizar o DriverManager para criar um objeto de conexão
         conexao = DriverManager.getConnection(url, login, senha);
             // Usando PreparedStatement
-        PreparedStatement comandoSQL = conexao.prepareStatement("INSERT INTO Produtos (CodigoProduto,Descricao, Marca,valorUni) "
-                                                              + "VALUES (?,?,?,?)");
-        comandoSQL.setString(1, novoProduto.getCodigo());
-        comandoSQL.setString(2, novoProduto.getNomeProduto());
-        comandoSQL.setString(3, novoProduto.getMarcaProduto());
-        comandoSQL.setDouble(4,novoProduto.getPrecoProduto());
+        PreparedStatement comandoSQL = conexao.prepareStatement("INSERT INTO produto (descricao, marca,valoruni) "
+                                                              + "VALUES (?,?,?)");
+        
+        comandoSQL.setString(1, novoProduto.getNomeProduto());
+        comandoSQL.setString(2, novoProduto.getMarcaProduto());
+        comandoSQL.setDouble(3,novoProduto.getPrecoProduto());
         
            
         // Tentativa de inserção de dados
@@ -261,7 +262,7 @@ public class CadastrarDao {
         comandoSQL.setString(1, novoProduto.getMarcaProduto());
         comandoSQL.setString(2, novoProduto.getNomeProduto());
         comandoSQL.setDouble(3, novoProduto.getPrecoProduto());
-        comandoSQL.setString(4, novoProduto.getCodigo());
+        comandoSQL.setInt(4, novoProduto.getCodigo());
            
         // Tentativa de inserção de dados
         int linhaAfetada=comandoSQL.executeUpdate();
@@ -289,7 +290,6 @@ public class CadastrarDao {
         return retorno;
         }
     
-    
     /**
   *  
   * @authot Brendo.Rotta
@@ -306,7 +306,7 @@ public class CadastrarDao {
         //Utilizar o DriverManager para criar um objeto de conexão
         conexao = DriverManager.getConnection(url, login, senha);
             // Usando PreparedStatement
-        PreparedStatement comandoSQL = conexao.prepareStatement("INSERT INTO Funcionario (NomeFuncionario, EnderecoFuncionario,login,senha,contatoFuncionario) "
+        PreparedStatement comandoSQL = conexao.prepareStatement("INSERT INTO Funcionario (Nome, Endereco,contato) "
                                                               + "VALUES (?,?,?)");
         comandoSQL.setString(1, novoFuncionario.getNome());
         comandoSQL.setString(2, novoFuncionario.getEndereco());
@@ -393,7 +393,6 @@ public class CadastrarDao {
         comandoSQL.setString(1, novoFuncionario.getNome());
         comandoSQL.setString(2, novoFuncionario.getEndereco());
         comandoSQL.setString(3, novoFuncionario.getTelefone());
-        comandoSQL.setString(4,novoFuncionario.getCPF());
         comandoSQL.setInt(5, novoFuncionario.getId());
            
         // Tentativa de inserção de dados

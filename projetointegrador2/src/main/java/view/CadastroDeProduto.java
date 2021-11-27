@@ -1,19 +1,39 @@
 package view;
 
+import com.google.protobuf.DoubleValue;
 import dao.CadastrarDao;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import methods.Produto;
 
 
 public class CadastroDeProduto extends javax.swing.JFrame {
-
+ public Produto edita = null;
     
     
     public CadastroDeProduto() {
         initComponents();
     }
+    public CadastroDeProduto(int ID) throws SQLException {
+        initComponents();
+        preencherFormulario(ID);
+    }
 
+    public void preencherFormulario(int ID) throws SQLException{
+        edita = dao.ConsultarDAO.consultarProdutoId(ID);
+        if(edita != null){
+         this.txtCodigoProduto.setText(String.valueOf(edita.getCodigo()));
+         this.txtMarca.setText(String.valueOf(edita.getMarcaProduto()));
+         this.txtNome.setText(String.valueOf(edita.getNomeProduto()));
+         this.txtPreco.setText(String.valueOf(edita.getPrecoProduto()));
+         
+         
+        }
+    }
+    
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -177,19 +197,19 @@ public class CadastroDeProduto extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCadastraProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastraProdActionPerformed
-        
+       boolean executado = false;
+        if(edita == null){
         String valor=txtPreco.getText();
-        String codigo = txtCodigoProduto.getText();
         String marca = txtMarca.getText();
         String descricao = txtNome.getText();
         
-       if(!"".equals(valor) || !"".equals(codigo) || !"".equals(marca) || !"".equals(descricao)){
+       if(!"".equals(valor)  || !"".equals(marca) || !"".equals(descricao)){
         
         double Valor= Double.parseDouble(valor);
            
         try {
             // Falta metodo de consultar o id que o fornecedor entrou no banco
-            boolean executadoSegundo = controller.produtoController.salvar(codigo, marca, descricao, Valor, HAND_CURSOR);
+            boolean executadoSegundo = controller.produtoController.salvar(marca, descricao, Valor);
         } catch (Exception ex) {
            JOptionPane.showMessageDialog(null, "Falha no envio dos dados para a dao");
         }
@@ -197,9 +217,30 @@ public class CadastroDeProduto extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, "O produto " + txtNome.getText() + " da marca \n" + txtMarca.getText() 
                 + " foi cadastrado com sucesso!", "Confirmação de Cadastro", JOptionPane.WARNING_MESSAGE);
         
-        }else if("".equals(valor) || "".equals(codigo) || "".equals(marca) || "".equals(descricao)){
+        }else if("".equals(valor)  || "".equals(marca) || "".equals(descricao)){
                 JOptionPane.showMessageDialog(null, "Campo Obrigatório não preenchido!", "Inormação Incorreta!", JOptionPane.WARNING_MESSAGE);
         } 
+        }else{
+            int ID=Integer.parseInt(this.txtCodigoProduto.getText());
+            String marca =txtMarca.getText();
+            String descricao = txtNome.getText();
+            double valor = Double.valueOf(txtPreco.getText()).doubleValue() ;
+            
+            if("".equals(marca) || "".equals(descricao)|| "".equals(valor)){
+                JOptionPane.showMessageDialog(null, "Falta de informações para edição");
+            }else{
+                try {
+                    executado=controller.produtoController.editar(ID, marca, descricao, valor);
+                    if(executado){
+                    JOptionPane.showMessageDialog(null, "Cliente Alterado");
+            }
+            this.dispose();
+                } catch (Exception ex) {
+                    Logger.getLogger(CadastroDeProduto.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
+            }
+        }
         
     }//GEN-LAST:event_btnCadastraProdActionPerformed
 

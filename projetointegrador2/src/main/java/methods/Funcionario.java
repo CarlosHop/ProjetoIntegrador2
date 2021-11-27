@@ -4,7 +4,6 @@ public class Funcionario {
 
     private int id;
     private String nome;
-    private String cpf;
     private String telefone;
     private String endereco;
     
@@ -20,9 +19,6 @@ public class Funcionario {
     public String getNome() {
         return nome;
     }
-    public String getCPF() {
-        return cpf;
-    }
     public String getTelefone() {
         return telefone;
     }
@@ -35,9 +31,6 @@ public class Funcionario {
                 /*                  Setters                                   */
     public void setNome(String Nome) {
         this.nome = nome;
-    }
-    public void setCPF(String CPF) {
-        this.cpf = cpf;
     }
     public void setTelefone(String telefone) {
         this.telefone = telefone;
