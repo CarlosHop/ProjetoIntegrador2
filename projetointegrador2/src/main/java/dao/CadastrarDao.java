@@ -181,8 +181,8 @@ public class CadastrarDao {
         //Utilizar o DriverManager para criar um objeto de conexão
         conexao = DriverManager.getConnection(url, login, senha);
             // Usando PreparedStatement
-        PreparedStatement comandoSQL = conexao.prepareStatement("DELETE clientes WHERE idCliente = ? ");
-        comandoSQL.setInt(1, ID);
+        PreparedStatement comandoSQL = conexao.prepareStatement("DELETE FROM clientes WHERE idCliente = ? ");
+        comandoSQL.setInt(1,ID);
            
         // Tentativa de inserção de dados
         int linhaAfetada=comandoSQL.executeUpdate();

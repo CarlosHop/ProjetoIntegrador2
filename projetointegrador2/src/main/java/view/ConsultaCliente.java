@@ -24,6 +24,8 @@ public class ConsultaCliente extends javax.swing.JFrame {
      */
     public ConsultaCliente() {
         initComponents();
+        setLocationRelativeTo(null);
+        setResizable(false);
     }
 
     /**
@@ -44,7 +46,7 @@ public class ConsultaCliente extends javax.swing.JFrame {
         jftCpf = new javax.swing.JFormattedTextField();
         jpanielBotoes = new javax.swing.JPanel();
         btnBuscar = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btnExcluir = new javax.swing.JButton();
         btnEditar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -111,10 +113,10 @@ public class ConsultaCliente extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("EXCLUIR");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnExcluir.setText("EXCLUIR");
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnExcluirActionPerformed(evt);
             }
         });
 
@@ -127,27 +129,24 @@ public class ConsultaCliente extends javax.swing.JFrame {
             .addGroup(jpanielBotoesLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
+                .addGap(18, 18, 18)
+                .addComponent(btnExcluir, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
-
-        jpanielBotoesLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnEditar, jButton1});
-
         jpanielBotoesLayout.setVerticalGroup(
             jpanielBotoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpanielBotoesLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jpanielBotoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                    .addComponent(btnExcluir)
                     .addComponent(btnEditar)
                     .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
-        jpanielBotoesLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnBuscar, btnEditar, jButton1});
+        jpanielBotoesLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnBuscar, btnEditar, btnExcluir});
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -187,15 +186,10 @@ public class ConsultaCliente extends javax.swing.JFrame {
        
        
         if(nomeBusca.equals("") && cpfBusca.equals("")){
-            System.out.println("Entrou Geral");
-            try {
-               ArrayList<String[]> listaCliente = clienteController.consulta();
-               for(String[] cliente : listaCliente)
-                   tabelaCliente.addRow(cliente);
-                   
-                   
-                   } catch (SQLException ex) {
-               JOptionPane.showMessageDialog(null, "Erro na consulta");
+           try {
+               recarregarTabela();
+           } catch (SQLException ex) {
+               Logger.getLogger(ConsultaCliente.class.getName()).log(Level.SEVERE, null, ex);
            }
        }else if(!cpfBusca.equals("")){
              
@@ -225,14 +219,35 @@ public class ConsultaCliente extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnBuscarActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
         if(jTable1.getSelectedRow()>=0){
+            int linha = jTable1.getSelectedRow();
+            int id = Integer.parseInt(String.valueOf(jTable1.getValueAt(linha, 0)));
+           
+            try {
+                if(clienteController.excluir(id)){
+                    JOptionPane.showMessageDialog(null, "Excluisão bem sucedida");
+                    recarregarTabela(); 
+                }else{
+                    JOptionPane.showMessageDialog(null, "Erro na exclusão");
+                }
+            } catch (Exception ex) {
+                Logger.getLogger(ConsultaCliente.class.getName()).log(Level.SEVERE, null, ex);
+            }
             
         }else{
         JOptionPane.showMessageDialog(null, "Cliente não selecionado para exclui");
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnExcluirActionPerformed
 
+    public void recarregarTabela() throws SQLException{
+    ArrayList<String[]> listaRetorno = clienteController.consulta();
+    DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+    modelo.setRowCount(0);
+    for(String[] cliente : listaRetorno){
+    modelo.addRow(cliente);
+    }
+    }
     /**
      * @param args the command line arguments
      */
@@ -271,7 +286,7 @@ public class ConsultaCliente extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnEditar;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnExcluir;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;

@@ -146,10 +146,10 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="btnEditar" linkSize="6" min="-2" pref="160" max="-2" attributes="0"/>
-                  <EmptySpace pref="19" max="32767" attributes="0"/>
-                  <Component id="jButton1" linkSize="6" min="-2" pref="150" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                  <Component id="btnEditar" min="-2" pref="160" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="btnExcluir" pref="171" max="32767" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="btnBuscar" min="-2" pref="160" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -160,7 +160,7 @@
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jButton1" linkSize="4" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnExcluir" linkSize="4" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btnEditar" linkSize="4" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btnBuscar" linkSize="4" alignment="3" min="-2" pref="43" max="-2" attributes="0"/>
                   </Group>
@@ -178,12 +178,12 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBuscarActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton1">
+        <Component class="javax.swing.JButton" name="btnExcluir">
           <Properties>
             <Property name="text" type="java.lang.String" value="EXCLUIR"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnExcluirActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnEditar">
