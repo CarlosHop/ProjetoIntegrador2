@@ -175,12 +175,13 @@ public class CadastrarDao {
         //Utilizar o DriverManager para criar um objeto de conexão
         conexao = DriverManager.getConnection(url, login, senha);
             // Usando PreparedStatement
-        PreparedStatement comandoSQL = conexao.prepareStatement("INSERT INTO produto (descricao, marca,valoruni) "
-                                                              + "VALUES (?,?,?)");
+        PreparedStatement comandoSQL = conexao.prepareStatement("INSERT INTO produto (descricao, marca,valoruni, estoque) "
+                                                              + "VALUES (?,?,?,?)");
         
         comandoSQL.setString(1, novoProduto.getNomeProduto());
         comandoSQL.setString(2, novoProduto.getMarcaProduto());
         comandoSQL.setDouble(3,novoProduto.getPrecoProduto());
+        comandoSQL.setInt(4,novoProduto.getEstoque());
         
            
         // Tentativa de inserção de dados
