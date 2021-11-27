@@ -8,6 +8,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import methods.Cliente;
+import methods.Funcionario;
+import methods.Produto;
 
 // Para realizar consultas
 public class ConsultarDAO {
@@ -38,7 +40,7 @@ public class ConsultarDAO {
         //  2 Utilizar o DriverManager para criar um objeto de conexão
         conexao = DriverManager.getConnection(url, login, senha);
         //  3 execução da consulta geral de clientes
-        instrucaoSQL = conexao.prepareStatement("SELECT * FROM clientes");
+        instrucaoSQL = conexao.prepareStatement("SELECT * FROM cliente");
         rs = instrucaoSQL.executeQuery();
         
         
@@ -86,7 +88,7 @@ public class ConsultarDAO {
         //  2 Utilizar o DriverManager para criar um objeto de conexão
         conexao = DriverManager.getConnection(url, login, senha);
         //  3 execução da consulta geral de clientes
-        instrucaoSQL = conexao.prepareStatement("SELECT * FROM clientes WHERE nome = ?");
+        instrucaoSQL = conexao.prepareStatement("SELECT * FROM cliente WHERE nome = ?");
         instrucaoSQL.setString(1, clienteExistente.getNomeCliente());
         
         rs = instrucaoSQL.executeQuery();
@@ -136,7 +138,7 @@ public class ConsultarDAO {
         //  2 Utilizar o DriverManager para criar um objeto de conexão
         conexao = DriverManager.getConnection(url, login, senha);
         //  3 execução da consulta geral de clientes
-        instrucaoSQL = conexao.prepareStatement("SELECT * FROM clientes WHERE cpf = ?");
+        instrucaoSQL = conexao.prepareStatement("SELECT * FROM cliente WHERE cpf = ?");
         instrucaoSQL.setString(1, clienteExistente.getCpfCliente());
         
         rs = instrucaoSQL.executeQuery();
@@ -186,7 +188,7 @@ public class ConsultarDAO {
         //  2 Utilizar o DriverManager para criar um objeto de conexão
         conexao = DriverManager.getConnection(url, login, senha);
         //  3 execução da consulta geral de clientes
-        instrucaoSQL = conexao.prepareStatement("SELECT * FROM clientes WHERE idCliente = ? ");
+        instrucaoSQL = conexao.prepareStatement("SELECT * FROM cliente WHERE id = ? ");
         instrucaoSQL.setInt(1, ID);
         rs = instrucaoSQL.executeQuery();
         
@@ -218,4 +220,301 @@ public class ConsultarDAO {
         
      return listaClientes;   
     }
+/*================================================================================================================*/
+/*                                     Metodos de pesquisa Produto                                                */
+    public static ArrayList<Produto> consultarProduto() throws SQLException{
+        // Array list para armazenar os valores
+        ArrayList<Produto> listaProdutos= new ArrayList<>();
+        // Criar objeto de conexão
+        Connection conexao = null;
+        // Statement para comando no banco de dados 
+        PreparedStatement instrucaoSQL = null;
+        // Atribuir o resultado da pesquisa em quantidade de linhas para o laço
+        ResultSet rs =null;
+        
+        
+        try {
+        //  1 Informando o Driver a ser utilizado
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        //  2 Utilizar o DriverManager para criar um objeto de conexão
+        conexao = DriverManager.getConnection(url, login, senha);
+        //  3 execução da consulta geral de clientes
+        instrucaoSQL = conexao.prepareStatement("SELECT * FROM produto");
+        rs = instrucaoSQL.executeQuery();
+        
+        
+        // Loop para acrescentar todos os clientes no arraylist
+        while(rs.next()){
+        Produto umProduto = new Produto();
+        umProduto.setCodigo(rs.getInt("id"));
+        umProduto.setMarcaProduto(rs.getString("marca"));
+        umProduto.setNomeProduto(rs.getString("descricao"));
+        umProduto.setPrecoProduto(rs.getDouble("valoruni"));
+        umProduto.setEstoque(rs.getInt("estoque"));
+        
+        listaProdutos.add(umProduto);
+        }
+        
+        } catch (Exception e) {
+            listaProdutos = null;
+        }finally{
+        if(conexao!=null){
+            conexao.close(); 
+        }
+        if(rs!=null){
+            rs.close(); 
+        }
+        }
+        
+     return listaProdutos;   
+    }
+    public static ArrayList<Produto> consultarProdutoPorNome(Produto produtoExistente) throws SQLException{
+        // Array list para armazenar os valores
+        ArrayList<Produto> listaProduto= new ArrayList<>();
+        // Criar objeto de conexão
+        Connection conexao = null;
+        // Statement para comando no banco de dados 
+        PreparedStatement instrucaoSQL = null;
+        // Atribuir o resultado da pesquisa em quantidade de linhas para o laço
+        ResultSet rs =null;
+        
+        
+        try {
+        //  1 Informando o Driver a ser utilizado
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        //  2 Utilizar o DriverManager para criar um objeto de conexão
+        conexao = DriverManager.getConnection(url, login, senha);
+        //  3 execução da consulta geral de clientes
+        instrucaoSQL = conexao.prepareStatement("SELECT * FROM produto WHERE descricao = ?");
+        instrucaoSQL.setString(1, produtoExistente.getNomeProduto());
+        
+        rs = instrucaoSQL.executeQuery();
+        
+        
+        // Loop para acrescentar todos os clientes no arraylist
+        while(rs.next()){
+        Produto umProduto = new Produto();
+        umProduto.setCodigo(rs.getInt("id"));
+        umProduto.setMarcaProduto(rs.getString("marca"));
+        umProduto.setNomeProduto(rs.getString("descricao"));
+        umProduto.setPrecoProduto(rs.getDouble("valoruni"));
+        umProduto.setEstoque(rs.getInt("estoque"));
+        
+        listaProduto.add(umProduto);
+        }
+        
+        } catch (Exception e) {
+            listaProduto = null;
+        }finally{
+        if(conexao!=null){
+            conexao.close(); 
+        }
+        if(rs!=null){
+            rs.close(); 
+        }
+        }
+        
+     return listaProduto;   
+    }
+    public static ArrayList<Produto> consultarProdutoPorCodigo(Produto produtoExistente) throws SQLException{
+        // Array list para armazenar os valores
+        ArrayList<Produto> listaProduto= new ArrayList<>();
+        // Criar objeto de conexão
+        Connection conexao = null;
+        // Statement para comando no banco de dados 
+        PreparedStatement instrucaoSQL = null;
+        // Atribuir o resultado da pesquisa em quantidade de linhas para o laço
+        ResultSet rs =null;
+        
+        
+        try {
+        //  1 Informando o Driver a ser utilizado
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        //  2 Utilizar o DriverManager para criar um objeto de conexão
+        conexao = DriverManager.getConnection(url, login, senha);
+        //  3 execução da consulta geral de clientes
+        instrucaoSQL = conexao.prepareStatement("SELECT * FROM produto WHERE id = ?");
+        instrucaoSQL.setInt(1, produtoExistente.getCodigo());
+        
+        rs = instrucaoSQL.executeQuery();
+        
+        
+        // Loop para acrescentar todos os clientes no arraylist
+       while(rs.next()){
+        Produto umProduto = new Produto();
+        umProduto.setCodigo(rs.getInt("id"));
+        umProduto.setMarcaProduto(rs.getString("marca"));
+        umProduto.setNomeProduto(rs.getString("descricao"));
+        umProduto.setPrecoProduto(rs.getDouble("valoruni"));
+        umProduto.setEstoque(rs.getInt("estoque"));
+        
+        listaProduto.add(umProduto);
+        }
+        
+        } catch (Exception e) {
+            listaProduto = null;
+        }finally{
+        if(conexao!=null){
+            conexao.close(); 
+        }
+        if(rs!=null){
+            rs.close(); 
+        }
+        }
+        
+     return listaProduto;   
+    }
+
+ /*================================================================================================================*/
+/*                                     Metodos de pesquisa Funcionario                                             */
+    /**
+    * 
+    *@author Brendo Rotta
+    *@return ArrayList contendo todos os funcionarios cadastrado
+    *
+    */
+    public static ArrayList<Funcionario> consultarFuncionario() throws SQLException{
+        // Array list para armazenar os valores
+        ArrayList<Funcionario> listaFuncionario= new ArrayList<>();
+        // Criar objeto de conexão
+        Connection conexao = null;
+        // Statement para comando no banco de dados 
+        PreparedStatement instrucaoSQL = null;
+        // Atribuir o resultado da pesquisa em quantidade de linhas para o laço
+        ResultSet rs =null;
+        
+        
+        try {
+        //  1 Informando o Driver a ser utilizado
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        //  2 Utilizar o DriverManager para criar um objeto de conexão
+        conexao = DriverManager.getConnection(url, login, senha);
+        //  3 execução da consulta geral de clientes
+        instrucaoSQL = conexao.prepareStatement("SELECT * FROM funcionario");
+        rs = instrucaoSQL.executeQuery();
+        
+        
+        // Loop para acrescentar todos os clientes no arraylist
+        while(rs.next()){
+        Funcionario umFuncionario = new Funcionario();
+        umFuncionario.setId(rs.getInt("id"));
+        umFuncionario.setNome(rs.getString("nome"));
+        umFuncionario.setCPF(rs.getString("cpf"));
+        umFuncionario.setTelefone(rs.getString("contato"));
+        umFuncionario.setEndereco(rs.getString("endereco"));
+        
+        listaFuncionario.add(umFuncionario);
+        }
+        
+        } catch (Exception e) {
+            listaFuncionario = null;
+        }finally{
+        if(conexao!=null){
+            conexao.close(); 
+        }
+        if(rs!=null){
+            rs.close(); 
+        }
+        }
+        
+     return listaFuncionario;   
+    }
+    public static ArrayList<Funcionario> consultarFuncionarioPorNome(Funcionario funcionarioExistente) throws SQLException{
+        // Array list para armazenar os valores
+        ArrayList<Funcionario> listaFuncionario= new ArrayList<>();
+        // Criar objeto de conexão
+        Connection conexao = null;
+        // Statement para comando no banco de dados 
+        PreparedStatement instrucaoSQL = null;
+        // Atribuir o resultado da pesquisa em quantidade de linhas para o laço
+        ResultSet rs =null;
+        
+        
+        try {
+        //  1 Informando o Driver a ser utilizado
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        //  2 Utilizar o DriverManager para criar um objeto de conexão
+        conexao = DriverManager.getConnection(url, login, senha);
+        //  3 execução da consulta geral de clientes
+        instrucaoSQL = conexao.prepareStatement("SELECT * FROM funcionario WHERE nome = ?");
+        instrucaoSQL.setString(1, funcionarioExistente.getNome());
+        
+        rs = instrucaoSQL.executeQuery();
+        
+        
+        // Loop para acrescentar todos os clientes no arraylist
+        while(rs.next()){
+        Funcionario umFuncionario = new Funcionario();
+        umFuncionario.setId(rs.getInt("id"));
+        umFuncionario.setNome(rs.getString("nome"));
+        umFuncionario.setCPF(rs.getString("cpf"));
+        umFuncionario.setTelefone(rs.getString("contato"));
+        umFuncionario.setEndereco(rs.getString("endereco"));
+        
+        listaFuncionario.add(umFuncionario);
+        }
+        
+        } catch (Exception e) {
+            listaFuncionario = null;
+        }finally{
+        if(conexao!=null){
+            conexao.close(); 
+        }
+        if(rs!=null){
+            rs.close(); 
+        }
+        }
+        
+     return listaFuncionario;   
+    }
+    public static ArrayList<Produto> consultarFuncionarioPorCodigo(Produto funcionarioExistente) throws SQLException{
+        // Array list para armazenar os valores
+        ArrayList<Funcionario> listaFuncionario= new ArrayList<>();
+        // Criar objeto de conexão
+        Connection conexao = null;
+        // Statement para comando no banco de dados 
+        PreparedStatement instrucaoSQL = null;
+        // Atribuir o resultado da pesquisa em quantidade de linhas para o laço
+        ResultSet rs =null;
+        
+        
+        try {
+        //  1 Informando o Driver a ser utilizado
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        //  2 Utilizar o DriverManager para criar um objeto de conexão
+        conexao = DriverManager.getConnection(url, login, senha);
+        //  3 execução da consulta geral de clientes
+        instrucaoSQL = conexao.prepareStatement("SELECT * FROM produto WHERE id = ?");
+        instrucaoSQL.setInt(1, funcionarioExistente.getCodigo());
+        
+        rs = instrucaoSQL.executeQuery();
+        
+        
+        // Loop para acrescentar todos os clientes no arraylist
+       while(rs.next()){
+        Produto umProduto = new Produto();
+        umProduto.setCodigo(rs.getInt("id"));
+        umProduto.setMarcaProduto(rs.getString("marca"));
+        umProduto.setNomeProduto(rs.getString("descricao"));
+        umProduto.setPrecoProduto(rs.getDouble("valoruni"));
+        umProduto.setEstoque(rs.getInt("estoque"));
+        
+        listaFuncionario.add(umProduto);
+        }
+        
+        } catch (Exception e) {
+            listaFuncionario = null;
+        }finally{
+        if(conexao!=null){
+            conexao.close(); 
+        }
+        if(rs!=null){
+            rs.close(); 
+        }
+        }
+        
+     return listaFuncionario;   
+    }
+
+ 
 }

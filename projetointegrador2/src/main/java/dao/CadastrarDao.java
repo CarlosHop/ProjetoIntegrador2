@@ -72,7 +72,44 @@ public class CadastrarDao {
         
         return retorno;
         }
-    
+    public static boolean ExcluirCliente(int ID) throws Exception{
+        boolean retorno = false;
+        Connection conexao = null;
+        
+        try{
+        // Informando o Driver a ser utilizado
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        //Utilizar o DriverManager para criar um objeto de conexão
+        conexao = DriverManager.getConnection(url, login, senha);
+            // Usando PreparedStatement
+        PreparedStatement comandoSQL = conexao.prepareStatement("DELETE FROM clientes WHERE id = ? ");
+        comandoSQL.setInt(1,ID);
+           
+        // Tentativa de inserção de dados
+        int linhaAfetada=comandoSQL.executeUpdate();
+        
+        if (linhaAfetada > 0) {
+        retorno = true;
+        }else{
+        retorno = false;
+        throw new Exception("Não foi possível Excluir o cliente");
+        }
+        
+            
+        }catch(ClassNotFoundException ex){
+        System.out.println("Erro:" + ex.getMessage());
+        retorno = false;
+            
+        }catch(Exception ex){
+        System.out.println("Erro:" + ex.getMessage());
+        retorno = false;
+        }
+        finally{
+            conexao.close();
+        }
+        
+        return retorno;
+        }
     public static boolean editarCliente(Cliente novoCliente) throws Exception{
         boolean retorno = false;
         Connection conexao = null;
@@ -85,7 +122,7 @@ public class CadastrarDao {
             // Usando PreparedStatement
         PreparedStatement comandoSQL = conexao.prepareStatement("UPDATE clientes SET "
                                                               + "nome = ?, cpf =?, contato = ?, email = ?, "
-                                                              + "cep = ?, endereco = ? WHERE idCliente = ? "
+                                                              + "cep = ?, endereco = ? WHERE id = ? "
                                                               );
 
         comandoSQL.setString(1, novoCliente.getNomeCliente());
@@ -169,6 +206,90 @@ public class CadastrarDao {
         }
         return retorno;
         }
+    public static boolean ExcluirProduto(int ID) throws Exception{
+        boolean retorno = false;
+        Connection conexao = null;
+        
+        try{
+        // Informando o Driver a ser utilizado
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        //Utilizar o DriverManager para criar um objeto de conexão
+        conexao = DriverManager.getConnection(url, login, senha);
+            // Usando PreparedStatement
+        PreparedStatement comandoSQL = conexao.prepareStatement("DELETE FROM produto WHERE id = ? ");
+        comandoSQL.setInt(1,ID);
+           
+        // Tentativa de inserção de dados
+        int linhaAfetada=comandoSQL.executeUpdate();
+        
+        if (linhaAfetada > 0) {
+        retorno = true;
+        }else{
+        retorno = false;
+        throw new Exception("Não foi possível Deletar o Produto");
+        }
+        
+            
+        }catch(ClassNotFoundException ex){
+        System.out.println("Erro:" + ex.getMessage());
+        retorno = false;
+            
+        }catch(Exception ex){
+        System.out.println("Erro:" + ex.getMessage());
+        retorno = false;
+        }
+        finally{
+            conexao.close();
+        }
+        
+        return retorno;
+        }
+    public static boolean editarProduto(Produto novoProduto) throws Exception{
+        boolean retorno = false;
+        Connection conexao = null;
+        
+        try{
+        // Informando o Driver a ser utilizado
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        //Utilizar o DriverManager para criar um objeto de conexão
+        conexao = DriverManager.getConnection(url, login, senha);
+            // Usando PreparedStatement
+        PreparedStatement comandoSQL = conexao.prepareStatement("UPDATE clientes SET "
+                                                              + "marca = ?, descricao =?, valoruni = ? WHERE id = ? "
+                                                              );
+
+        comandoSQL.setString(1, novoProduto.getMarcaProduto());
+        comandoSQL.setString(2, novoProduto.getNomeProduto());
+        comandoSQL.setDouble(3, novoProduto.getPrecoProduto());
+        comandoSQL.setString(4, novoProduto.getCodigo());
+           
+        // Tentativa de inserção de dados
+        int linhaAfetada=comandoSQL.executeUpdate();
+        
+        if (linhaAfetada > 0) {
+        retorno = true;
+        }else{
+        retorno = false;
+        throw new Exception("Não foi possível editar o cliente");
+        }
+        
+            
+        }catch(ClassNotFoundException ex){
+        System.out.println("Erro:" + ex.getMessage());
+        retorno = false;
+            
+        }catch(Exception ex){
+        System.out.println("Erro:" + ex.getMessage());
+        retorno = false;
+        }
+        finally{
+            conexao.close();
+        }
+        
+        return retorno;
+        }
+    
+    
     /**
   *  
   * @authot Brendo.Rotta
@@ -217,8 +338,7 @@ public class CadastrarDao {
         
         return retorno;
         }
-    
-    public static boolean ExcluirCliente(int ID) throws Exception{
+    public static boolean ExcluirFuncionario(int ID) throws Exception{
         boolean retorno = false;
         Connection conexao = null;
         
@@ -228,7 +348,7 @@ public class CadastrarDao {
         //Utilizar o DriverManager para criar um objeto de conexão
         conexao = DriverManager.getConnection(url, login, senha);
             // Usando PreparedStatement
-        PreparedStatement comandoSQL = conexao.prepareStatement("DELETE FROM clientes WHERE idCliente = ? ");
+        PreparedStatement comandoSQL = conexao.prepareStatement("DELETE FROM funcionario WHERE id = ? ");
         comandoSQL.setInt(1,ID);
            
         // Tentativa de inserção de dados
@@ -238,7 +358,7 @@ public class CadastrarDao {
         retorno = true;
         }else{
         retorno = false;
-        throw new Exception("Não foi possível inserir o cliente");
+        throw new Exception("Não foi possível Deletar o Funcionario");
         }
         
             
@@ -256,6 +376,53 @@ public class CadastrarDao {
         
         return retorno;
         }
+    public static boolean editarFuncionario(Funcionario novoFuncionario) throws Exception{
+        boolean retorno = false;
+        Connection conexao = null;
+        
+        try{
+        // Informando o Driver a ser utilizado
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        //Utilizar o DriverManager para criar um objeto de conexão
+        conexao = DriverManager.getConnection(url, login, senha);
+            // Usando PreparedStatement
+        PreparedStatement comandoSQL = conexao.prepareStatement("UPDATE funcionario SET "
+                                                              + "nome = ?, endereco = ?, contato = ?, cpf =? WHERE id = ? "
+                                                              );
+
+        comandoSQL.setString(1, novoFuncionario.getNome());
+        comandoSQL.setString(2, novoFuncionario.getEndereco());
+        comandoSQL.setString(3, novoFuncionario.getTelefone());
+        comandoSQL.setString(4,novoFuncionario.getCPF());
+        comandoSQL.setInt(5, novoFuncionario.getId());
+           
+        // Tentativa de inserção de dados
+        int linhaAfetada=comandoSQL.executeUpdate();
+        
+        if (linhaAfetada > 0) {
+        retorno = true;
+        }else{
+        retorno = false;
+        throw new Exception("Não foi possível editar o cliente");
+        }
+        
+            
+        }catch(ClassNotFoundException ex){
+        System.out.println("Erro:" + ex.getMessage());
+        retorno = false;
+            
+        }catch(Exception ex){
+        System.out.println("Erro:" + ex.getMessage());
+        retorno = false;
+        }
+        finally{
+            conexao.close();
+        }
+        
+        return retorno;
+        }
+    
+    
     
 }// Chave classe dao
 

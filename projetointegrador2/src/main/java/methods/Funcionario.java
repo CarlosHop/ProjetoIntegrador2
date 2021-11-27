@@ -2,6 +2,7 @@ package methods;
 
 public class Funcionario {
 
+    private int id;
     private String nome;
     private String cpf;
     private String telefone;
@@ -13,6 +14,9 @@ public class Funcionario {
 
     /*==============================================================================*/
                  /*                Getters                                    */
+    public int getId(){
+        return id;
+    }
     public String getNome() {
         return nome;
     }
@@ -41,6 +45,8 @@ public class Funcionario {
     public void setEndereco(String endereco) {
         this.endereco = endereco;
     }
-    
+    public void setId(int id){
+        this.id = id;
+    }
 
 }

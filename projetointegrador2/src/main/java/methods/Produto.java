@@ -2,11 +2,11 @@ package methods;
 
 public class Produto {
 
-    private String codigo;
+    private int codigo;
     private String marcaProduto;
     private String nomeProduto;
     private double precoProduto;
-
+    private int estoque;
     
     public Produto(){}
     
@@ -21,8 +21,10 @@ public class Produto {
     public double getPrecoProduto() {
         return precoProduto;
     }
-
-    public String getCodigo() {
+    public int getEstoque(){
+        return estoque;
+    }
+    public int getCodigo() {
         return codigo;
     }
    
@@ -37,8 +39,10 @@ public class Produto {
     public void setPrecoProduto(double precoProduto) {
         this.precoProduto = precoProduto;
     }
-    public void setCodigo(String codigo) {
+    public void setCodigo(int codigo) {
         this.codigo = codigo;
     }
-    
+    public void setEstoque(int estoque){
+        this.estoque = estoque;
+    }
 }
