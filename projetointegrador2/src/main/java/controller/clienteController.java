@@ -19,8 +19,9 @@ public class clienteController {
     public static boolean excluir(int idCliente) throws Exception{
     return dao.CadastrarDao.ExcluirCliente(idCliente);
     }
-    public static boolean editar(String nome, String Cpf, String Endereco,String Cep, String email,String contato) throws Exception{
-    Cliente novoCliente = new Cliente();
+    public static boolean editar(String nome, String Cpf, String Endereco,String Cep, String email,String contato, int ID) throws Exception{
+       Cliente novoCliente = new Cliente();
+       novoCliente.setIdcliente(ID);
        novoCliente.setNomeCliente(nome);
        novoCliente.setCpfCliente(Cpf);
        novoCliente.setEnderecoCliente(Endereco);

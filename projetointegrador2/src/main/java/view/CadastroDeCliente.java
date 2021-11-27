@@ -284,7 +284,7 @@ public class CadastroDeCliente extends javax.swing.JFrame {
         }else{
        
         try {
-            executado = controller.clienteController.editar(nome, cpf, endereco, CEP, email, contato);
+            executado = controller.clienteController.editar(nome, cpf, endereco, CEP, email, contato,ID);
             if(executado){
             JOptionPane.showMessageDialog(null, "Cliente Alterado");
             }

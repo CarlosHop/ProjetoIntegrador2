@@ -76,13 +76,6 @@ public class CadastrarDao {
     public static boolean editarCliente(Cliente novoCliente) throws Exception{
         boolean retorno = false;
         Connection conexao = null;
-        System.out.println("ID > "+ novoCliente.getIdcliente());
-        System.out.println("nome > "+ novoCliente.getNomeCliente());
-        System.out.println("CPF > "+ novoCliente.getCpfCliente());
-        System.out.println("Endereco > "+ novoCliente.getEnderecoCliente());
-        System.out.println("contato > "+ novoCliente.getContato());
-        System.out.println("email > "+ novoCliente.getEmail());
-        System.out.println("Cep > "+ novoCliente.getCep());
         
         try{
         // Informando o Driver a ser utilizado
