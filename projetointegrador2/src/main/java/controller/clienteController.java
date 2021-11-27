@@ -19,7 +19,18 @@ public class clienteController {
     public static boolean excluir(int idCliente) throws Exception{
     return dao.CadastrarDao.ExcluirCliente(idCliente);
     }
-    
+    public static boolean editar(String nome, String Cpf, String Endereco,String Cep, String email,String contato) throws Exception{
+    Cliente novoCliente = new Cliente();
+       novoCliente.setNomeCliente(nome);
+       novoCliente.setCpfCliente(Cpf);
+       novoCliente.setEnderecoCliente(Endereco);
+       novoCliente.setCep(Cep);
+       novoCliente.setEmail(email);
+       novoCliente.setContato(contato);
+       
+        
+        return dao.CadastrarDao.editarCliente(novoCliente);
+    }
     public static boolean salvar(String nome, String Cpf, String Endereco,String Cep, String email,String contato) throws Exception{
     Cliente novoCliente = new Cliente();
        novoCliente.setNomeCliente(nome);

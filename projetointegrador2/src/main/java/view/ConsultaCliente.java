@@ -121,6 +121,11 @@ public class ConsultaCliente extends javax.swing.JFrame {
         });
 
         btnEditar.setText("EDITAR");
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jpanielBotoesLayout = new javax.swing.GroupLayout(jpanielBotoes);
         jpanielBotoes.setLayout(jpanielBotoesLayout);
@@ -239,6 +244,24 @@ public class ConsultaCliente extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, "Cliente não selecionado para exclui");
         }
     }//GEN-LAST:event_btnExcluirActionPerformed
+
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+        if(jTable1.getSelectedRow()>=0){
+            int indice =jTable1.getSelectedRow();
+            DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+            int ID = Integer.parseInt(modelo.getValueAt(indice,0).toString());
+            try {
+                CadastroDeCliente edita = new CadastroDeCliente(ID);
+                edita.setVisible(true);
+            } catch (SQLException ex) {
+                Logger.getLogger(ConsultaCliente.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+        }else{
+            JOptionPane.showMessageDialog(null, "Nenhum cliente selecionado para alteração");
+        }
+
+    }//GEN-LAST:event_btnEditarActionPerformed
 
     public void recarregarTabela() throws SQLException{
     ArrayList<String[]> listaRetorno = clienteController.consulta();

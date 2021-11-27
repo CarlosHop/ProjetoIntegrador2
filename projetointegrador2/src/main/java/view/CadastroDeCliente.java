@@ -1,13 +1,16 @@
 package view;
 
+import controller.clienteController;
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.text.MaskFormatter;
+import methods.Cliente;
 
 public class CadastroDeCliente extends javax.swing.JFrame {
-
+    public Cliente alterarCliente = null;
     /**
      * Creates new form CadastroUsuario
      */
@@ -15,7 +18,23 @@ public class CadastroDeCliente extends javax.swing.JFrame {
         initComponents();
         formatarCampo();
     }
-
+    public CadastroDeCliente(int ID) throws SQLException {
+        initComponents();
+        preencherFormulario(ID);
+    }
+    
+    public void preencherFormulario(int ID) throws SQLException{
+        alterarCliente= dao.ConsultarDAO.consultarClienteId(ID);
+        if(alterarCliente != null){
+            this.lblID.setText(String.valueOf(alterarCliente.getIdcliente()));
+            this.txtNome1.setText(String.valueOf(alterarCliente.getNomeCliente()));
+            this.ftxtCpf1.setText(String.valueOf(alterarCliente.getCpfCliente()));
+            this.txtCep.setText(String.valueOf(alterarCliente.getCep()));
+            this.txtEmail.setText(String.valueOf(alterarCliente.getEmail()));
+            this.txtContato.setText(String.valueOf(alterarCliente.getContato()));
+            this.txtEndereco.setText(String.valueOf(alterarCliente.getEnderecoCliente()));
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -40,6 +59,7 @@ public class CadastroDeCliente extends javax.swing.JFrame {
         txtNome1 = new javax.swing.JTextField();
         lblEndereco2 = new javax.swing.JLabel();
         txtCep = new javax.swing.JFormattedTextField();
+        lblID = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -152,10 +172,13 @@ public class CadastroDeCliente extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(btnFechar, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(30, 30, 30)
+                                .addGap(18, 18, 18)
                                 .addComponent(btnConfirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(lblNome)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(lblNome)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(lblID, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(layout.createSequentialGroup()
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(lblCpf1)
@@ -175,13 +198,18 @@ public class CadastroDeCliente extends javax.swing.JFrame {
                                 .addComponent(txtNome1, javax.swing.GroupLayout.PREFERRED_SIZE, 710, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(26, 26, 26))))
         );
+
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnConfirmar, btnFechar});
+
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblCadastroCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(lblNome)
+                .addGap(41, 41, 41)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblNome)
+                    .addComponent(lblID))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtNome1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(16, 16, 16)
@@ -205,16 +233,17 @@ public class CadastroDeCliente extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblEndereco2)
                         .addGap(49, 49, 49)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblEndereco)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(13, 13, 13)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnFechar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(27, 27, 27)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnFechar)
                     .addComponent(btnConfirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnConfirmar, btnFechar});
 
         pack();
         setLocationRelativeTo(null);
@@ -232,19 +261,59 @@ public class CadastroDeCliente extends javax.swing.JFrame {
        
         boolean executado=false;
        
+       
+        if(alterarCliente != null){
+         int ID=Integer.parseInt(this.lblID.getText())  ;
+         String nome = txtNome1.getText();
+       String cpf =  ftxtCpf1.getText().replace("-", "").replace(".","");
+       String endereco = txtEndereco.getText();
+       String CEP = txtCep.getText().replace(".", "").replace("-", "");
+       String email = txtEmail.getText();
+       String contato = txtContato.getText().replace("(", "").replace(")", "").replace("-", "");
+       if(txtCep == null){
+       this.txtCep.setText("default");
+       }
+       if(txtEndereco == null){
+       this.txtEndereco.setText("default");
+       }
+       
+        if("".equals(nome) || "".equals(cpf) || "".equals(endereco) || "".equals(CEP) || "".equals(email) || "".equals(contato)){
+            
+             JOptionPane.showMessageDialog(null, "Campo Obrigatório não preenchido!", "Inormação Incorreta!", JOptionPane.WARNING_MESSAGE);
+             
+        }else{
+       
+        try {
+            executado = controller.clienteController.editar(nome, cpf, endereco, CEP, email, contato);
+            if(executado){
+            JOptionPane.showMessageDialog(null, "Cliente Alterado");
+            }
+            this.dispose();
+        } catch (Exception ex) {
+            Logger.getLogger(CadastroDeCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        }
+        
+        
+        }else{
        String nome = txtNome1.getText();
        String cpf =  ftxtCpf1.getText().replace("-", "").replace(".","");
        String endereco = txtEndereco.getText();
        String CEP = txtCep.getText().replace(".", "").replace("-", "");
        String email = txtEmail.getText();
        String contato = txtContato.getText().replace("(", "").replace(")", "").replace("-", "");
-        System.out.println("Contato > "+contato);
+       if(txtCep == null){
+       this.txtCep.setText("default");
+       }
+       if(txtEndereco == null){
+       this.txtEndereco.setText("default");
+       }
        
         if("".equals(nome) || "".equals(cpf) || "".equals(endereco) || "".equals(CEP) || "".equals(email) || "".equals(contato)){
             
              JOptionPane.showMessageDialog(null, "Campo Obrigatório não preenchido!", "Inormação Incorreta!", JOptionPane.WARNING_MESSAGE);
              
-        }else if(!"".equals(nome) || !"".equals(cpf) || !"".equals(endereco) || !"".equals(CEP) || !"".equals(email) || !"".equals(contato)){
+        }else{
        
         try {
             executado = controller.clienteController.salvar(nome, cpf, endereco, CEP, email, contato);
@@ -256,6 +325,8 @@ public class CadastroDeCliente extends javax.swing.JFrame {
             Logger.getLogger(CadastroDeCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
         }
+        }
+       
     }//GEN-LAST:event_btnConfirmarActionPerformed
 
     private void txtContatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtContatoActionPerformed
@@ -326,6 +397,7 @@ public class CadastroDeCliente extends javax.swing.JFrame {
     private javax.swing.JLabel lblEndereco;
     private javax.swing.JLabel lblEndereco1;
     private javax.swing.JLabel lblEndereco2;
+    private javax.swing.JLabel lblID;
     private javax.swing.JLabel lblNome;
     private javax.swing.JFormattedTextField txtCep;
     private javax.swing.JFormattedTextField txtContato;

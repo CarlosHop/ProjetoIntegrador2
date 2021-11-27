@@ -169,5 +169,53 @@ public class ConsultarDAO {
         
      return listaClientes;   
     }
-    
+    public static Cliente consultarClienteId(int ID) throws SQLException{
+        // Array list para armazenar os valores
+        Cliente listaClientes= new Cliente();
+        // Criar objeto de conexão
+        Connection conexao = null;
+        // Statement para comando no banco de dados 
+        PreparedStatement instrucaoSQL = null;
+        // Atribuir o resultado da pesquisa em quantidade de linhas para o laço
+        ResultSet rs =null;
+        
+        
+        try {
+        //  1 Informando o Driver a ser utilizado
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        //  2 Utilizar o DriverManager para criar um objeto de conexão
+        conexao = DriverManager.getConnection(url, login, senha);
+        //  3 execução da consulta geral de clientes
+        instrucaoSQL = conexao.prepareStatement("SELECT * FROM clientes WHERE idCliente = ? ");
+        instrucaoSQL.setInt(1, ID);
+        rs = instrucaoSQL.executeQuery();
+        
+        
+        // Loop para acrescentar todos os clientes no arraylist
+        while(rs.next()){
+        
+        listaClientes.setIdcliente(rs.getInt("idCliente"));
+        listaClientes.setNomeCliente(rs.getString("nome"));
+        listaClientes.setCpfCliente(rs.getString("cpf"));
+        listaClientes.setCep(rs.getString("cep"));
+        listaClientes.setContato(rs.getString("contato"));
+        listaClientes.setEnderecoCliente(rs.getString("endereco"));
+        listaClientes.setEmail(rs.getString("email"));
+            
+        
+        }
+        
+        } catch (Exception e) {
+            listaClientes = null;
+        }finally{
+        if(conexao!=null){
+            conexao.close(); 
+        }
+        if(rs!=null){
+            rs.close(); 
+        }
+        }
+        
+     return listaClientes;   
+    }
 }

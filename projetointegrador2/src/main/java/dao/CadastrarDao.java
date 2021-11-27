@@ -72,6 +72,62 @@ public class CadastrarDao {
         
         return retorno;
         }
+    
+    public static boolean editarCliente(Cliente novoCliente) throws Exception{
+        boolean retorno = false;
+        Connection conexao = null;
+        System.out.println("ID > "+ novoCliente.getIdcliente());
+        System.out.println("nome > "+ novoCliente.getNomeCliente());
+        System.out.println("CPF > "+ novoCliente.getCpfCliente());
+        System.out.println("Endereco > "+ novoCliente.getEnderecoCliente());
+        System.out.println("contato > "+ novoCliente.getContato());
+        System.out.println("email > "+ novoCliente.getEmail());
+        System.out.println("Cep > "+ novoCliente.getCep());
+        
+        try{
+        // Informando o Driver a ser utilizado
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        //Utilizar o DriverManager para criar um objeto de conexão
+        conexao = DriverManager.getConnection(url, login, senha);
+            // Usando PreparedStatement
+        PreparedStatement comandoSQL = conexao.prepareStatement("UPDATE clientes SET "
+                                                              + "nome = ?, cpf =?, contato = ?, email = ?, "
+                                                              + "cep = ?, endereco = ? WHERE idCliente = ? "
+                                                              );
+
+        comandoSQL.setString(1, novoCliente.getNomeCliente());
+        comandoSQL.setString(2, novoCliente.getCpfCliente());
+        comandoSQL.setString(3, novoCliente.getContato());
+        comandoSQL.setString(4, novoCliente.getEmail());
+        comandoSQL.setString(5,novoCliente.getCep());
+        comandoSQL.setString(6, novoCliente.getEnderecoCliente());
+        comandoSQL.setInt(7, novoCliente.getIdcliente());
+           
+        // Tentativa de inserção de dados
+        int linhaAfetada=comandoSQL.executeUpdate();
+        
+        if (linhaAfetada > 0) {
+        retorno = true;
+        }else{
+        retorno = false;
+        throw new Exception("Não foi possível editar o cliente");
+        }
+        
+            
+        }catch(ClassNotFoundException ex){
+        System.out.println("Erro:" + ex.getMessage());
+        retorno = false;
+            
+        }catch(Exception ex){
+        System.out.println("Erro:" + ex.getMessage());
+        retorno = false;
+        }
+        finally{
+            conexao.close();
+        }
+        
+        return retorno;
+        }
     /**
   *  
   * @authot Brendo.Rotta
