@@ -190,7 +190,7 @@ public class CadastrarDao {
         retorno = true;
         }else{
         retorno = false;
-        throw new Exception("Não foi possível inserir o cliente");
+        throw new Exception("Não foi possível inserir o Produto");
         }
         
             

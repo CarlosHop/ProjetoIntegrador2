@@ -199,23 +199,28 @@ public class CadastroDeProduto extends javax.swing.JFrame {
     private void btnCadastraProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastraProdActionPerformed
        boolean executado = false;
         if(edita == null){
-        String valor=txtPreco.getText();
+        String valor=txtPreco.getText().trim().replace(",", ".");
         String marca = txtMarca.getText();
         String descricao = txtNome.getText();
         
-       if(!"".equals(valor)  || !"".equals(marca) || !"".equals(descricao)){
+       if(!valor.equals("")  || !marca.equals("") || !descricao.equals("")){
         
         double Valor= Double.parseDouble(valor);
            
         try {
             // Falta metodo de consultar o id que o fornecedor entrou no banco
             boolean executadoSegundo = controller.produtoController.salvar(marca, descricao, Valor);
+            if(executadoSegundo){
+            JOptionPane.showMessageDialog(null, "O produto " + txtNome.getText() + " da marca \n" + txtMarca.getText() 
+                + " foi cadastrado com sucesso!", "Confirmação de Cadastro", JOptionPane.WARNING_MESSAGE);
+            }
+        
+        
         } catch (Exception ex) {
-           JOptionPane.showMessageDialog(null, "Falha no envio dos dados para a dao");
+           JOptionPane.showMessageDialog(null, "Falha no envio dos dados para a Controll");
         }
         
-        JOptionPane.showMessageDialog(null, "O produto " + txtNome.getText() + " da marca \n" + txtMarca.getText() 
-                + " foi cadastrado com sucesso!", "Confirmação de Cadastro", JOptionPane.WARNING_MESSAGE);
+        
         
         }else if("".equals(valor)  || "".equals(marca) || "".equals(descricao)){
                 JOptionPane.showMessageDialog(null, "Campo Obrigatório não preenchido!", "Inormação Incorreta!", JOptionPane.WARNING_MESSAGE);
