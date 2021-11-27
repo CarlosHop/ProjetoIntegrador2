@@ -13,14 +13,13 @@ import methods.Funcionario;
  */
 public class FuncionarioController {
     
-    public static boolean salvar(String nome,String CPF,String telefone,String endereco,String login,String senha) throws Exception{
+    public static boolean salvar(String nome,String CPF,String telefone,String endereco) throws Exception{
         Funcionario novoFuncionario = new Funcionario();
         novoFuncionario.setNome(nome);
         novoFuncionario.setCPF(CPF);
         novoFuncionario.setTelefone(telefone);
         novoFuncionario.setEndereco(endereco);
-        novoFuncionario.setLogin(login);
-        novoFuncionario.setSenha(senha);
+        
         
        
         

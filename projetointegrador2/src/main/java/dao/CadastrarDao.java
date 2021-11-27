@@ -186,12 +186,10 @@ public class CadastrarDao {
         conexao = DriverManager.getConnection(url, login, senha);
             // Usando PreparedStatement
         PreparedStatement comandoSQL = conexao.prepareStatement("INSERT INTO Funcionario (NomeFuncionario, EnderecoFuncionario,login,senha,contatoFuncionario) "
-                                                              + "VALUES (?,?,?,?,?)");
+                                                              + "VALUES (?,?,?)");
         comandoSQL.setString(1, novoFuncionario.getNome());
         comandoSQL.setString(2, novoFuncionario.getEndereco());
-        comandoSQL.setString(3, novoFuncionario.getLogin());
-        comandoSQL.setString(4,novoFuncionario.getSenha());
-        comandoSQL.setString(5, novoFuncionario.getTelefone());
+        comandoSQL.setString(3, novoFuncionario.getTelefone());
         
            
         // Tentativa de inserção de dados

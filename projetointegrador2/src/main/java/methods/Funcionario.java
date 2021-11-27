@@ -6,8 +6,7 @@ public class Funcionario {
     private String cpf;
     private String telefone;
     private String endereco;
-    private String login;
-    private String senha;
+    
 
     public Funcionario() {
     }
@@ -26,13 +25,7 @@ public class Funcionario {
     public String getEndereco() {
         return endereco;
     }
-    public String getLogin() {
-        return login;
-    }
-
-    public String getSenha() {
-        return senha;
-    }
+    
 
     /*==============================================================================*/
                 /*                  Setters                                   */
@@ -48,11 +41,6 @@ public class Funcionario {
     public void setEndereco(String endereco) {
         this.endereco = endereco;
     }
-    public void setLogin(String login) {
-        this.login = login;
-    }
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
+    
 
 }
