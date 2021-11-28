@@ -6,23 +6,43 @@
 package view;
 
 import dao.CadastrarDao;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import methods.Funcionario;
 
 /**
  *
  * @author Gamer
  */
 public class CadastroFuncionario extends javax.swing.JFrame {
-
+    public Funcionario alterarFuncionario=null;
     /**
      * Creates new form CadastroFuncionario
      */
     public CadastroFuncionario() {
         initComponents();
+        setVisible(true);
+        setResizable(false);
     }
+    public CadastroFuncionario(int ID) throws SQLException {
+        initComponents();
+        setVisible(true);
+        setResizable(false);
+        preencherFormulario(ID);
 
+    }
+     public void preencherFormulario(int ID) throws SQLException{
+        alterarFuncionario= dao.ConsultarDAO.consultarFuncionarioId(ID);
+        if(alterarFuncionario != null){
+            this.lblCodigo.setText(String.valueOf(alterarFuncionario.getId()));
+            this.txtNome.setText(String.valueOf(alterarFuncionario.getNome()));
+            this.jtfCpf.setText(String.valueOf(alterarFuncionario.getCpf()));
+            this.jtfTelefone.setText(String.valueOf(alterarFuncionario.getTelefone()));
+            this.txtEndereco.setText(String.valueOf(alterarFuncionario.getEndereco()));
+        }
+     }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -42,6 +62,7 @@ public class CadastroFuncionario extends javax.swing.JFrame {
         txtEndereco = new javax.swing.JTextField();
         lblCpf = new javax.swing.JLabel();
         jtfCpf = new javax.swing.JFormattedTextField();
+        lblCodigo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro de Funcionarios");
@@ -123,25 +144,30 @@ public class CadastroFuncionario extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnCadastrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jpainelDadosPessoais, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnCadastrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(lblCodigo)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jpainelDadosPessoais, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblCodigo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jpainelDadosPessoais, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
-     
+        if(alterarFuncionario == null){
         String Nome = txtNome.getText();
         String cpf = jtfCpf.getText();
         String telefone = jtfTelefone.getText();
@@ -161,6 +187,29 @@ public class CadastroFuncionario extends javax.swing.JFrame {
                 Logger.getLogger(CadastroFuncionario.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+        }else{
+        int ID = Integer.parseInt(this.lblCodigo.getText());
+        String Nome = txtNome.getText();
+        String cpf = jtfCpf.getText();
+        String telefone = jtfTelefone.getText();
+        String endereco = txtEndereco.getText();
+        
+    
+        if("".equals(Nome) || "".equals(cpf) || "".equals(telefone) || "".equals(endereco)){
+             JOptionPane.showMessageDialog(null, "Campo Obrigatório não preenchido!", "Inormação Incorreta!", JOptionPane.WARNING_MESSAGE);
+                 
+        }else{
+            try {
+                boolean executar = controller.FuncionarioController.editar(Nome, cpf, endereco, cpf, ID);
+                if (executar) {
+                    JOptionPane.showMessageDialog(null, "Funcionario executado");
+                }
+            } catch (Exception ex) {
+                Logger.getLogger(CadastroFuncionario.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        }
+        
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     /**
@@ -203,6 +252,7 @@ public class CadastroFuncionario extends javax.swing.JFrame {
     private javax.swing.JPanel jpainelDadosPessoais;
     private javax.swing.JFormattedTextField jtfCpf;
     private javax.swing.JFormattedTextField jtfTelefone;
+    private javax.swing.JLabel lblCodigo;
     private javax.swing.JLabel lblCpf;
     private javax.swing.JLabel lblEndereco;
     private javax.swing.JLabel lblNome;

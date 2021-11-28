@@ -6,7 +6,7 @@ public class Funcionario {
     private String nome;
     private String telefone;
     private String endereco;
-    
+    private String cpf;
 
     public Funcionario() {
     }
@@ -25,6 +25,9 @@ public class Funcionario {
     public String getEndereco() {
         return endereco;
     }
+    public String getCpf() {
+        return cpf;
+    }
     
 
     /*==============================================================================*/
@@ -41,5 +44,7 @@ public class Funcionario {
     public void setId(int id){
         this.id = id;
     }
-
+    public void setCpf(String cpf){
+        this.cpf = cpf;
+    }
 }

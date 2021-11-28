@@ -25,7 +25,7 @@ public class ConsultaProdutos extends javax.swing.JFrame {
     
     
     public void alinhaTabela() { 
-        TableCellRenderer rendererFromHeader = jtbListaProdutos.getTableHeader().getDefaultRenderer();
+        TableCellRenderer rendererFromHeader = jTable1.getTableHeader().getDefaultRenderer();
         JLabel headerLabel = (JLabel) rendererFromHeader;
         headerLabel.setHorizontalAlignment(JLabel.CENTER);
     }
@@ -41,7 +41,7 @@ public class ConsultaProdutos extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jtbListaProdutos = new javax.swing.JTable();
+        jTable1 = new javax.swing.JTable();
         btnFechar = new javax.swing.JButton();
         btnEditar = new javax.swing.JButton();
         btnBuscar = new javax.swing.JButton();
@@ -56,25 +56,17 @@ public class ConsultaProdutos extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Arial Unicode MS", 1, 36)); // NOI18N
         jLabel1.setText("Consulta de Produto");
 
-        jtbListaProdutos.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jtbListaProdutos.setFont(new java.awt.Font("Arial Unicode MS", 1, 14)); // NOI18N
-        jtbListaProdutos.setModel(new javax.swing.table.DefaultTableModel(
+        jTable1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jTable1.setFont(new java.awt.Font("Arial Unicode MS", 1, 14)); // NOI18N
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
                 "Cod", "Marca", "Nome", "Preço Unitário", "Quantidade"
             }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.Integer.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
-        jScrollPane1.setViewportView(jtbListaProdutos);
+        ));
+        jScrollPane1.setViewportView(jTable1);
 
         btnFechar.setFont(new java.awt.Font("Arial Unicode MS", 1, 18)); // NOI18N
         btnFechar.setText("Fechar");
@@ -215,25 +207,29 @@ public class ConsultaProdutos extends javax.swing.JFrame {
     }//GEN-LAST:event_txtNomeActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        DefaultTableModel tabelaCliente = (DefaultTableModel) jtbListaProdutos.getModel();
+        DefaultTableModel tabelaProduto = (DefaultTableModel) jTable1.getModel();
+        tabelaProduto.setRowCount(0);
         
-        String nomeBusca = txtNome.getText();
-        String codigo = txtCodigo.getText();
-        int Cod = Integer.parseInt(codigo);
-        if(!txtCodigo.equals("")){
+        String nomeBusca = txtNome.getText().trim().replace(" ", "");
+        String codigo = txtCodigo.getText().trim().replace(" ", "");
+        
+        
+        if(codigo != ""){
+            System.out.println("Entrou no codigo");
             try {
+               int Cod = Integer.parseInt(codigo);
                ArrayList<String[]> listaProduto = controller.produtoController.consultaCodigo(Cod);
                for(String[] produto : listaProduto)
-                   tabelaCliente.addRow(produto);
+                   tabelaProduto.addRow(produto);
                    
                    } catch (SQLException ex) {
                JOptionPane.showMessageDialog(null, "Erro na consulta");
            }
-        }else if(!nomeBusca.equals("")){
+        }else if(nomeBusca != ""){
            try {
                ArrayList<String[]> listaProduto = controller.produtoController.consultaNome(nomeBusca);
                for(String[] produto : listaProduto)
-                   tabelaCliente.addRow(produto);
+                   tabelaProduto.addRow(produto);
                    
                    } catch (SQLException ex) {
                JOptionPane.showMessageDialog(null, "Erro na consulta");
@@ -242,24 +238,37 @@ public class ConsultaProdutos extends javax.swing.JFrame {
             try {
                ArrayList<String[]> listaProduto = controller.produtoController.consulta();
                for(String[] produto : listaProduto)
-                   tabelaCliente.addRow(produto);
+                   tabelaProduto.addRow(produto);
                    
                    } catch (SQLException ex) {
                JOptionPane.showMessageDialog(null, "Erro na consulta");
            }
         }
     }//GEN-LAST:event_btnBuscarActionPerformed
-
+public void recarregarTabela() throws SQLException{
+    ArrayList<String[]> listaRetorno = clienteController.consulta();
+    DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+    modelo.setRowCount(0);
+    for(String[] cliente : listaRetorno){
+    modelo.addRow(cliente);
+    }
+    }
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-     if(jtbListaProdutos.getSelectedRow()>=0){
-            int indice =jtbListaProdutos.getSelectedRow();
-            DefaultTableModel modelo = (DefaultTableModel) jtbListaProdutos.getModel();
+     if(jTable1.getSelectedRow()>=0){
+            int indice =jTable1.getSelectedRow();
+            DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
             int ID = Integer.parseInt(modelo.getValueAt(indice,0).toString());
+          
+         try {
             CadastroDeProduto edita = new CadastroDeProduto(ID);
             edita.setVisible(true);
+         } catch (SQLException ex) {
+             Logger.getLogger(ConsultaProdutos.class.getName()).log(Level.SEVERE, null, ex);
+         }
+            
             
         }else{
-            JOptionPane.showMessageDialog(null, "Nenhum cliente selecionado para alteração");
+            JOptionPane.showMessageDialog(null, "Nenhum Produto selecionado para alteração");
         }
     }//GEN-LAST:event_btnEditarActionPerformed
 
@@ -308,7 +317,7 @@ public class ConsultaProdutos extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jtbListaProdutos;
+    private javax.swing.JTable jTable1;
     private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtNome;
     // End of variables declaration//GEN-END:variables

@@ -263,7 +263,7 @@ public class CadastroDeCliente extends javax.swing.JFrame {
        
        
         if(alterarCliente != null){
-         int ID=Integer.parseInt(this.lblID.getText());
+       int ID=Integer.parseInt(this.lblID.getText());
        String nome = txtNome1.getText();
        String cpf =  ftxtCpf1.getText().replace("-", "").replace(".","");
        String endereco = txtEndereco.getText();

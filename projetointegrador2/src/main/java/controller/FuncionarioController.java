@@ -68,5 +68,36 @@ public class FuncionarioController {
         }
    return retornoView;
     }
-    
+    public static ArrayList<String[]> consultaCpf(String cpf) throws SQLException{
+        Funcionario umFuncionario = new Funcionario();
+        umFuncionario.setCpf(cpf);
+        ArrayList<Funcionario> listaFuncionario= ConsultarDAO.consultarFuncionarioPorNome(umFuncionario);
+        ArrayList<String[]> retornoView= new ArrayList<>();
+        for (Funcionario cliente:listaFuncionario){
+            retornoView.add(new String[]{
+                            String.valueOf(cliente.getId()),
+                            String.valueOf(cliente.getNome()),
+                            String.valueOf(cliente.getTelefone()),
+                            String.valueOf(cliente.getEndereco()),
+                            } // Chave do vetor de string
+                            ); // Chave do retornoView 
+        }
+   return retornoView;
+    }
+    public static ArrayList<String[]> consultaCodigo(int ID) throws SQLException{
+        Funcionario umFuncionario = new Funcionario();
+        umFuncionario.setId(ID);
+        ArrayList<Funcionario> listaFuncionario= ConsultarDAO.consultarFuncionarioPorId(umFuncionario);
+        ArrayList<String[]> retornoView= new ArrayList<>();
+        for (Funcionario cliente:listaFuncionario){
+            retornoView.add(new String[]{
+                            String.valueOf(cliente.getId()),
+                            String.valueOf(cliente.getNome()),
+                            String.valueOf(cliente.getTelefone()),
+                            String.valueOf(cliente.getEndereco()),
+                            } // Chave do vetor de string
+                            ); // Chave do retornoView 
+        }
+   return retornoView;
+    }
 }
