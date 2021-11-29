@@ -183,11 +183,10 @@ public class ConsultaCliente extends javax.swing.JFrame {
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
        DefaultTableModel tabelaCliente = (DefaultTableModel) jTable1.getModel();
        tabelaCliente.setRowCount(0);
-       
+   
        
        String nomeBusca = txtNome.getText();
        String cpfBusca = jftCpf.getText().replace(".","").replace("-","").replace(" ","");
-        
        
        
         if(nomeBusca.equals("") && cpfBusca.equals("")){
@@ -264,12 +263,12 @@ public class ConsultaCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEditarActionPerformed
 
     public void recarregarTabela() throws SQLException{
-    ArrayList<String[]> listaRetorno = clienteController.consulta();
-    DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
-    modelo.setRowCount(0);
-    for(String[] cliente : listaRetorno){
-    modelo.addRow(cliente);
-    }
+        ArrayList<String[]> listaRetorno = clienteController.consulta();
+        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+        modelo.setRowCount(0);
+        for (String[] cliente : listaRetorno) {
+            modelo.addRow(cliente);
+        }
     }
     /**
      * @param args the command line arguments

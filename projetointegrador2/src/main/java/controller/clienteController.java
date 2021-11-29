@@ -62,7 +62,7 @@ public class clienteController {
                             } // Chave do vetor de string
                             ); // Chave do retornoView 
         }
-   return retornoView;
+    return retornoView;
     }
     public static ArrayList<String[]> consultaCpf(String cpf) throws SQLException{
         Cliente umCliente = new Cliente();

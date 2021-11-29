@@ -51,7 +51,7 @@ public class ConsultaProdutos extends javax.swing.JFrame {
         txtNome = new javax.swing.JTextField();
         txtCodigo = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Arial Unicode MS", 1, 36)); // NOI18N
         jLabel1.setText("Consulta de Produto");

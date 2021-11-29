@@ -19,6 +19,7 @@ public class Compra {
     private int idComprador;
     private String produto;
     private int idProduto;
+    private double valorTotal;
 
     public void setIdComprador(int idComprador) {
         this.idComprador = idComprador;
@@ -84,5 +85,12 @@ public class Compra {
         this.quantidade = quantidade;
     }
     
+    public double getValorTotal() {
+        return valorTotal;
+    }
+    public void setValorTotal(double valorTotal) {
+        this.valorTotal = valorTotal;
+    }
+
     
 }

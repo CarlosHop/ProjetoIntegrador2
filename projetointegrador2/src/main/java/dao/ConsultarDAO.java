@@ -556,4 +556,50 @@ public class ConsultarDAO {
      return listaCompras;   
     }
     
+    public static ArrayList<Compra> consultarCompraSintetico() throws SQLException{
+        // Array list para armazenar os valores
+        ArrayList<Compra> listaComprasSintetico = new ArrayList<>();
+        // Criar objeto de conexão
+        Connection conexao = null;
+        // Statement para comando no banco de dados 
+        PreparedStatement instrucaoSQL = null;
+        // Atribuir o resultado da pesquisa em quantidade de linhas para o laço
+        ResultSet rs =null;
+        
+        try {
+        //  1 Informando o Driver a ser utilizado
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        //  2 Utilizar o DriverManager para criar um objeto de conexão
+        conexao = DriverManager.getConnection(url, login, senha);
+        //  3 execução da consulta geral de clientes
+        instrucaoSQL = conexao.prepareStatement("SELECT co.id AS IdCompra, cl.nome AS Nome, co.data AS Data, (co.quantidade * pr.valoruni) AS ValorTotal\n" +
+                                                "FROM compra AS co, cliente AS cl, produto AS pr\n" +
+                                                "WHERE co.id_cliente = cl.id AND co.id_produto = pr.id");
+        
+        
+        // Loop para acrescentar todos os clientes no arraylist
+        while(rs.next()){
+        Compra CompraSintetica = new Compra();
+        CompraSintetica.setId(rs.getInt("id"));
+        CompraSintetica.setComprador(rs.getString("nome"));
+        CompraSintetica.setDataCompra(rs.getString("data"));
+        CompraSintetica.setProduto(rs.getString("valorTotal"));
+            
+        listaComprasSintetico.add(CompraSintetica);
+        }
+        
+        } catch (Exception e) {
+            listaComprasSintetico = null;
+        }finally{
+        if(conexao!=null){
+            conexao.close(); 
+        }
+        if(rs!=null){
+            rs.close(); 
+        }
+        }
+        
+     return listaComprasSintetico;   
+    }
+    
 }
