@@ -485,7 +485,7 @@ public class ConsultarDAO {
         while(rs.next()){
         Compra umaCompra = new Compra();
         umaCompra.setId(rs.getInt("id"));
-        umaCompra.setDataCompra(rs.getDate("data"));
+        umaCompra.setDataCompra(rs.getString("data"));
         umaCompra.setComprador(rs.getString("id_cliente"));
         umaCompra.setProduto(rs.getString("id_produto"));
             
@@ -535,7 +535,7 @@ public class ConsultarDAO {
         while(rs.next()){
         Compra umaCompra = new Compra();
         umaCompra.setId(rs.getInt("id"));
-        umaCompra.setDataCompra(rs.getDate("data"));
+        umaCompra.setDataCompra(rs.getString("data"));
         umaCompra.setComprador(rs.getString("id_cliente"));
         umaCompra.setProduto(rs.getString("id_produto"));
             
