@@ -210,11 +210,11 @@ public class ConsultaProdutos extends javax.swing.JFrame {
         DefaultTableModel tabelaProduto = (DefaultTableModel) jTable1.getModel();
         tabelaProduto.setRowCount(0);
         
-        String nomeBusca = txtNome.getText().trim().replace(" ", "");
-        String codigo = txtCodigo.getText().trim().replace(" ", "");
+        String nomeBusca=txtNome.getText().trim().replace(" ", "");
+        String codigo=txtCodigo.getText().trim().replace(" ", "");
         
         
-        if(codigo != ""){
+        if(!"".equals(codigo)){
             System.out.println("Entrou no codigo");
             try {
                int Cod = Integer.parseInt(codigo);
@@ -225,7 +225,7 @@ public class ConsultaProdutos extends javax.swing.JFrame {
                    } catch (SQLException ex) {
                JOptionPane.showMessageDialog(null, "Erro na consulta");
            }
-        }else if(nomeBusca != ""){
+        }else if(!"".equals(nomeBusca)){
            try {
                ArrayList<String[]> listaProduto = controller.produtoController.consultaNome(nomeBusca);
                for(String[] produto : listaProduto)

@@ -4,7 +4,6 @@ import java.sql.PreparedStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import methods.Cliente;
-import methods.Funcionario;
 import methods.Produto;
 
 // Para executar upDates
@@ -297,132 +296,7 @@ public class CadastrarDao {
   * @param novoFuncionario - Objeto da classe Funcionario
   * @return boolean - true: Funcionario cadastrado, false: Falha no cadastro
   */
-    public static boolean salvarFuncionario(Funcionario novoFuncionario) throws Exception{
-        boolean retorno = false;
-        Connection conexao = null;
-        
-        try{
-        // Informando o Driver a ser utilizado
-        Class.forName("com.mysql.cj.jdbc.Driver");
-        //Utilizar o DriverManager para criar um objeto de conexão
-        conexao = DriverManager.getConnection(url, login, senha);
-            // Usando PreparedStatement
-        PreparedStatement comandoSQL = conexao.prepareStatement("INSERT INTO Funcionario (Nome, Endereco,contato) "
-                                                              + "VALUES (?,?,?)");
-        comandoSQL.setString(1, novoFuncionario.getNome());
-        comandoSQL.setString(2, novoFuncionario.getEndereco());
-        comandoSQL.setString(3, novoFuncionario.getTelefone());
-        
-           
-        // Tentativa de inserção de dados
-        int linhaAfetada=comandoSQL.executeUpdate();
-        
-        if (linhaAfetada > 0) {
-        retorno = true;
-        }else{
-        retorno = false;
-        throw new Exception("Não foi possível inserir o Funcionario");
-        }
-        
-            
-        }catch(ClassNotFoundException ex){
-        System.out.println("Erro:" + ex.getMessage());
-        retorno = false;
-            
-        }catch(Exception ex){
-        System.out.println("Erro:" + ex.getMessage());
-        retorno = false;
-        }
-        finally{
-            conexao.close();
-        }
-        
-        return retorno;
-        }
-    public static boolean ExcluirFuncionario(int ID) throws Exception{
-        boolean retorno = false;
-        Connection conexao = null;
-        
-        try{
-        // Informando o Driver a ser utilizado
-        Class.forName("com.mysql.cj.jdbc.Driver");
-        //Utilizar o DriverManager para criar um objeto de conexão
-        conexao = DriverManager.getConnection(url, login, senha);
-            // Usando PreparedStatement
-        PreparedStatement comandoSQL = conexao.prepareStatement("DELETE FROM funcionario WHERE id = ? ");
-        comandoSQL.setInt(1,ID);
-           
-        // Tentativa de inserção de dados
-        int linhaAfetada=comandoSQL.executeUpdate();
-        
-        if (linhaAfetada > 0) {
-        retorno = true;
-        }else{
-        retorno = false;
-        throw new Exception("Não foi possível Deletar o Funcionario");
-        }
-        
-            
-        }catch(ClassNotFoundException ex){
-        System.out.println("Erro:" + ex.getMessage());
-        retorno = false;
-            
-        }catch(Exception ex){
-        System.out.println("Erro:" + ex.getMessage());
-        retorno = false;
-        }
-        finally{
-            conexao.close();
-        }
-        
-        return retorno;
-        }
-    public static boolean editarFuncionario(Funcionario novoFuncionario) throws Exception{
-        boolean retorno = false;
-        Connection conexao = null;
-        
-        try{
-        // Informando o Driver a ser utilizado
-        Class.forName("com.mysql.cj.jdbc.Driver");
-        //Utilizar o DriverManager para criar um objeto de conexão
-        conexao = DriverManager.getConnection(url, login, senha);
-            // Usando PreparedStatement
-        PreparedStatement comandoSQL = conexao.prepareStatement("UPDATE funcionario SET "
-                                                              + "nome = ?, endereco = ?, contato = ?, cpf =? WHERE id = ? "
-                                                              );
 
-        comandoSQL.setString(1, novoFuncionario.getNome());
-        comandoSQL.setString(2, novoFuncionario.getEndereco());
-        comandoSQL.setString(3, novoFuncionario.getTelefone());
-        comandoSQL.setInt(5, novoFuncionario.getId());
-           
-        // Tentativa de inserção de dados
-        int linhaAfetada=comandoSQL.executeUpdate();
-        
-        if (linhaAfetada > 0) {
-        retorno = true;
-        }else{
-        retorno = false;
-        throw new Exception("Não foi possível editar o cliente");
-        }
-        
-            
-        }catch(ClassNotFoundException ex){
-        System.out.println("Erro:" + ex.getMessage());
-        retorno = false;
-            
-        }catch(Exception ex){
-        System.out.println("Erro:" + ex.getMessage());
-        retorno = false;
-        }
-        finally{
-            conexao.close();
-        }
-        
-        return retorno;
-        }
-    
-    
     
 }// Chave classe dao
 

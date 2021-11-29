@@ -251,9 +251,8 @@ public class RelatorioSintetico extends javax.swing.JFrame {
        Date dataFinal = jdcDataFinal.getDate(); 
        String nome = txtNomeCliente.getText();
        
-       if(dataComeco.after(dataFinal)){
+       if(dataComeco != null && dataFinal != null && dataComeco.after(dataFinal)){
            JOptionPane.showConfirmDialog(null, "Data Incorreta");
-           
        }else{
            
        }

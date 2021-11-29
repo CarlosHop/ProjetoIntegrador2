@@ -8,6 +8,8 @@ package controller;
 import dao.ConsultarDAO;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import methods.Produto;
 
 /**
@@ -90,4 +92,13 @@ public class produtoController {
    return retornoView;
     }
     
+    public static Produto itemParaCompra(int Codigo) throws SQLException{
+            return dao.ConsultarDAO.consultarProdutoId(Codigo);
+    }
+    
+    
+
+
+
+
 }
