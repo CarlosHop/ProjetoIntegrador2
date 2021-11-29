@@ -92,13 +92,4 @@ public class produtoController {
    return retornoView;
     }
     
-    public static Produto itemParaCompra(int Codigo) throws SQLException{
-            return dao.ConsultarDAO.consultarProdutoId(Codigo);
-    }
-    
-    
-
-
-
-
 }

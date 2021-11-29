@@ -12,11 +12,29 @@ import java.util.Date;
  */
 public class Compra {
     private int id;
-    private Date dataCompra;
+    private String dataCompra;
     private Date dataComeco;
     private Date dateFim;
     private String comprador;
+    private int idComprador;
     private String produto;
+    private int idProduto;
+
+    public void setIdComprador(int idComprador) {
+        this.idComprador = idComprador;
+    }
+
+    public void setIdProduto(int idProduto) {
+        this.idProduto = idProduto;
+    }
+
+    public int getIdComprador() {
+        return idComprador;
+    }
+
+    public int getIdProduto() {
+        return idProduto;
+    }
     private int quantidade;
 
     public int getId() {
@@ -25,10 +43,10 @@ public class Compra {
     public void setId(int id) {
         this.id = id;
     }
-    public Date getDataCompra() {
+    public String getDataCompra() {
         return dataCompra;
     }
-    public void setDataCompra(Date dataCompra) {
+    public void setDataCompra(String dataCompra) {
         this.dataCompra = dataCompra;
     }
     public String getComprador() {

@@ -2,8 +2,11 @@ package dao;
 
 import java.sql.PreparedStatement;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 import methods.Cliente;
+import methods.Compra;
 import methods.Produto;
 
 // Para executar upDates
@@ -290,13 +293,50 @@ public class CadastrarDao {
         return retorno;
         }
     
-    /**
-  *  
-  * @authot Brendo.Rotta
-  * @param novoFuncionario - Objeto da classe Funcionario
-  * @return boolean - true: Funcionario cadastrado, false: Falha no cadastro
-  */
-
+    public static boolean venda(Compra umaCompra) throws SQLException{
+        boolean retorno = false;
+        Connection conexao = null;
+        
+        try{
+        // Informando o Driver a ser utilizado
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        //Utilizar o DriverManager para criar um objeto de conexão
+        conexao = DriverManager.getConnection(url, login, senha);
+            // Usando PreparedStatement
+        PreparedStatement comandoSQL = conexao.prepareStatement("INSERT INTO compra (data, quantidade, id_cliente, id_produto) "
+                                                              + "VALUES (?,?,?,?)");
+        
+        comandoSQL.setString(1, umaCompra.getDataCompra());
+        comandoSQL.setInt(2, umaCompra.getQuantidade());
+        comandoSQL.setInt(3,umaCompra.getIdComprador());
+        comandoSQL.setInt(4,umaCompra.getIdProduto());
+        
+           
+        // Tentativa de inserção de dados
+        int linhaAfetada=comandoSQL.executeUpdate();
+        
+        if (linhaAfetada > 0) {
+        retorno = true;
+        }else{
+        retorno = false;
+        throw new Exception("Não foi possível inserir a Compra");
+        }
+        
+            
+        }catch(ClassNotFoundException ex){
+        System.out.println("Erro:" + ex.getMessage());
+        retorno = false;
+            
+        }catch(Exception ex){
+        System.out.println("Erro:" + ex.getMessage());
+        retorno = false;
+        }
+        finally{
+            conexao.close();
+        }
+        return retorno;
+        
+    }
     
 }// Chave classe dao
 

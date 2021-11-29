@@ -221,6 +221,55 @@ public class ConsultarDAO {
         
      return listaClientes;   
     }
+     public static Cliente consultarClienteCpfUnico(String cpf) throws SQLException{
+        // Array list para armazenar os valores
+        Cliente listaClientes= new Cliente();
+        // Criar objeto de conexão
+        Connection conexao = null;
+        // Statement para comando no banco de dados 
+        PreparedStatement instrucaoSQL = null;
+        // Atribuir o resultado da pesquisa em quantidade de linhas para o laço
+        ResultSet rs =null;
+        
+        
+        try {
+        //  1 Informando o Driver a ser utilizado
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        //  2 Utilizar o DriverManager para criar um objeto de conexão
+        conexao = DriverManager.getConnection(url, login, senha);
+        //  3 execução da consulta geral de clientes
+        instrucaoSQL = conexao.prepareStatement("SELECT * FROM cliente WHERE cpf = ? ");
+        instrucaoSQL.setString(1, cpf);
+        rs = instrucaoSQL.executeQuery();
+        
+        
+        // Loop para acrescentar todos os clientes no arraylist
+        while(rs.next()){
+        
+        listaClientes.setIdcliente(rs.getInt("id"));
+        listaClientes.setNomeCliente(rs.getString("nome"));
+        listaClientes.setCpfCliente(rs.getString("cpf"));
+        listaClientes.setCep(rs.getString("cep"));
+        listaClientes.setContato(rs.getString("contato"));
+        listaClientes.setEnderecoCliente(rs.getString("endereco"));
+        listaClientes.setEmail(rs.getString("email"));
+            
+        
+        }
+        
+        } catch (Exception e) {
+            listaClientes = null;
+        }finally{
+        if(conexao!=null){
+            conexao.close(); 
+        }
+        if(rs!=null){
+            rs.close(); 
+        }
+        }
+        
+     return listaClientes;   
+    }
 /*================================================================================================================*/
 /*                                     Metodos de pesquisa Produto                                                */
     public static ArrayList<Produto> consultarProduto() throws SQLException{
@@ -391,7 +440,7 @@ public class ConsultarDAO {
         while(rs.next()){
         
         produto.setCodigo(rs.getInt("id"));
-        produto.setNomeProduto(rs.getString("nome"));
+        produto.setNomeProduto(rs.getString("descricao"));
         produto.setMarcaProduto(rs.getString("marca"));
         produto.setPrecoProduto(rs.getDouble("valoruni"));
         produto.setEstoque(rs.getInt("estoque"));
